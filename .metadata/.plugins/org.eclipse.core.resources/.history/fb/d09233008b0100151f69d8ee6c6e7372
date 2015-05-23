@@ -1,7 +1,0 @@
-package campochico
-
-class Cliente {
-
-    static constraints = {
-    }
-}
