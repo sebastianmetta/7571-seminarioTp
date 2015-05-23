@@ -10,3 +10,6 @@ stacktrace.log
 /out/
 /web-app/plugins
 /web-app/WEB-INF/classes
+.classpath
+.project
+.settings
