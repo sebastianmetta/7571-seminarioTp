@@ -606,3 +606,6 @@ org.osgi.framework.BundleException: Could not resolve module: org.springsource.i
 
 !ENTRY org.eclipse.ui 4 4 2015-05-23 17:34:33.005
 !MESSAGE Conflicting handlers for org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu: {org.eclipse.jdt.internal.ui.actions.JDTQuickMenuCreator$1@5fe44} vs {org.eclipse.jdt.internal.ui.actions.JDTQuickMenuCreator$1@1784332}
+
+!ENTRY org.eclipse.ui 4 4 2015-05-23 17:56:44.691
+!MESSAGE Conflicting handlers for org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu: {org.eclipse.jdt.internal.ui.actions.JDTQuickMenuCreator$1@5fe44} vs {org.eclipse.jdt.internal.ui.actions.JDTQuickMenuCreator$1@1784332}
