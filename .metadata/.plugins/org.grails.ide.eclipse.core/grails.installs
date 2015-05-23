@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<installs>
+<install is-default="false">
+<home>/home/sebastian/springsource/grails-2.2.3/</home>
+<name>Grails 2.2.3</name>
+</install>
+<install is-default="true">
+<home>/home/sebastian/.gvm/grails/2.5.0/</home>
+<name>Grails 2.5.0</name>
+</install>
+</installs>
