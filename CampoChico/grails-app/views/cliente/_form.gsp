@@ -20,30 +20,27 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'contacto', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'contacto', 'error')} ">
 	<label for="contacto">
 		<g:message code="cliente.contacto.label" default="Contacto" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="contacto" required="" value="${clienteInstance?.contacto}"/>
+	<g:textField name="contacto" value="${clienteInstance?.contacto}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'mail', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'mail', 'error')} ">
 	<label for="mail">
 		<g:message code="cliente.mail.label" default="Mail" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="mail" required="" value="${clienteInstance?.mail}"/>
+	<g:textField name="mail" value="${clienteInstance?.mail}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'telefono', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'telefono', 'error')} ">
 	<label for="telefono">
 		<g:message code="cliente.telefono.label" default="Telefono" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="telefono" required="" value="${clienteInstance?.telefono}"/>
+	<g:textField name="telefono" value="${clienteInstance?.telefono}"/>
 
 </div>
 

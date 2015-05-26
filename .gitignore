@@ -6,11 +6,11 @@ stacktrace.log
 /*.zip
 /plugin.xml
 /*.log
-/target/
+CampoChico/target/
 /out/
-/web-app/plugins
-/web-app/WEB-INF/classes
-.classpath
-.project
-.settings
+CampoChico/web-app/plugins
+CampoChico/web-app/WEB-INF/classes
+CampoChico/.classpath
+CampoChico/.project
+CampoChico/.settings
 /.metadata
