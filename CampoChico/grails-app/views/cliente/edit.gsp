@@ -42,8 +42,10 @@
 				<g:render template="form" />
 			</fieldset>
 			<fieldset class="buttons">
-				<g:actionSubmit class="save" action="update"
-					value="${message(code: 'default.button.update.label', default: 'Update')}" />
+				<div class="col-lg-10 col-lg-offset-2">
+					<g:actionSubmit class="save" class="btn btn-primary" action="update"
+						value="${message(code: 'default.button.update.label', default: 'Update')}" />
+				</div>
 			</fieldset>
 		</g:form>
 	</div>

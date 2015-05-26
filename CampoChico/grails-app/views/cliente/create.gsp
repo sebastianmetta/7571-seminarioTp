@@ -38,8 +38,11 @@
 				<g:render template="form" />
 			</fieldset>
 			<fieldset class="buttons">
-				<g:submitButton name="create" class="save"
-					value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				<div class="col-lg-10 col-lg-offset-2">
+					<button type="reset" class="btn btn-default">Cancelar</button>
+					<g:submitButton name="create" class="btn btn-primary"
+						value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				</div>
 			</fieldset>
 		</g:form>
 	</div>
