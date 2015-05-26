@@ -43,8 +43,11 @@
 							Edicion<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
+							<li><a href="${createLink(uri: '/Producto')}">Productos</a></li>
+							<li class="divider"></li>
 							<li><a href="${createLink(uri: '/Cliente')}">Clientes</a></li>
 							<li><a href="${createLink(uri: '/Proveedor')}">Proveedores</a></li>
+							<li class="divider"></li>
 							<li><a href="${createLink(uri: '/Zona')}">Zonas</a></li>
 						</ul>
 					</li>
