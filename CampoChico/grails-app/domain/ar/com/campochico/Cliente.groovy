@@ -15,4 +15,9 @@ class Cliente {
 		contacto blank: true, nullable: true
 		mail blank: true, nullable: true
 	}
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

@@ -13,4 +13,9 @@ class Proveedor {
 		direccion blank:true, nullable:true
 		contacto blank:true, nullable:true
     }
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

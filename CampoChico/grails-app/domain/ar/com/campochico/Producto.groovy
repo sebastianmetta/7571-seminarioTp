@@ -9,4 +9,8 @@ class Producto {
 		descripcion blank:true, nullable:true
 	}
     
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

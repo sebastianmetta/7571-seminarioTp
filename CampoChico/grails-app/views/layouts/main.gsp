@@ -48,6 +48,7 @@
 							<li><a href="${createLink(uri: '/Cliente')}">Clientes</a></li>
 							<li><a href="${createLink(uri: '/Proveedor')}">Proveedores</a></li>
 							<li class="divider"></li>
+							<li><a href="${createLink(uri: '/DiaVisitaCliente')}">Días de visita a clientes</a></li>
 							<li><a href="${createLink(uri: '/Zona')}">Zonas</a></li>
 						</ul>
 					</li>
