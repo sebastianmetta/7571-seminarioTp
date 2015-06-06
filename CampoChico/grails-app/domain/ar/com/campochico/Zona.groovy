@@ -1,5 +1,9 @@
 package ar.com.campochico
 
+/**
+ * Representa una Zona de clientes 
+ * @author sebastian
+ */
 class Zona {
 
 	String nombre
@@ -10,24 +14,24 @@ class Zona {
 
 	static constraints = {
 		nombre blank:false, nullable:false
-		
+
 		clientes(validator: { val, obj ->
 			def retval = true
 			if (!obj?.clientes?.size()) {
-			  retval = 'La zona debe tener al menos 1 cliente'
+				retval = 'La zona debe tener al menos 1 cliente'
 			}
 			return retval
-		  })
-		
+		})
+
 		diasVisita(validator: { val, obj ->
 			def retval = true
 			if (!obj?.diasVisita?.size()) {
-			  retval = 'La zona debe tener al menos 1 día de visita'
+				retval = 'La zona debe tener al menos 1 día de visita'
 			}
 			return retval
-		  })
+		})
 	}
-	
+
 	@Override
 	public String toString() {
 		return nombre;
