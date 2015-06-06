@@ -1,5 +1,6 @@
 package ar.com.campochico
 
+import grails.converters.JSON
 import org.joda.time.LocalDate;
 
 class HojaDeRutaController {
@@ -17,8 +18,10 @@ class HojaDeRutaController {
 				eq('id', DiaVisitaCliente.findByDia(todayDay).getId())
 			}
 		}
-		println "RESULT: " + todayZone
-		[zone:todayZone]
+		String todayZoneAsJson = todayZone as JSON
+		println "Result As json: " + todayZoneAsJson
+		//[todayZone:todayZone]
+		[json: todayZoneAsJson]
 	}
 
 
