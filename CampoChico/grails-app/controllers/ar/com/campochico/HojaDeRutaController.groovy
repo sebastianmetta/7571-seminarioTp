@@ -1,6 +1,7 @@
 package ar.com.campochico
 
 import grails.converters.JSON
+
 import org.joda.time.LocalDate;
 
 class HojaDeRutaController {
@@ -8,28 +9,17 @@ class HojaDeRutaController {
 	//Helpful when controller actions are exposed as REST service.
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+	// Grails inyectará el servicio en esta propiedad
+	// ¿Cómo sabe que servicio inyectar? Usa una convención para determinar que servicio debe
+	// inyectar. En este caso puso en mayúscula la primera letra y busco UserService
+	def zonaService
+	
 	def index() {
-		//render (view:'index.gsp')
-		
-		//TODO: Mover a un servicio
-		String todayDay = new LocalDate().dayOfWeek().getAsText()
-		List<Zona> todayZone = Zona.withCriteria {
-			diasVisita {
-				eq('id', DiaVisitaCliente.findByDia(todayDay).getId())
-			}
-		}
-		String todayZoneAsJson = todayZone as JSON
-		println "Result As json: " + todayZoneAsJson
-		//[todayZone:todayZone]
-		[json: todayZoneAsJson]
+		redirect(action: "list", params: params)
+	}
+	
+	def list() {
+		[todayClientsList: zonaService.todayClients()]
 	}
 
-
-	def loadHojaDeRuta() {
-		String todayDay = new LocalDate().dayOfWeek().getAsText()
-		List<Zona> zonaHoy = Zona.withCriteria {
-			diasVisita { eq('diasVisita', todayDay) }
-		}
-		[zona:zonaHoy]
-	}
 }

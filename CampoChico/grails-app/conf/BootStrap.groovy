@@ -21,7 +21,7 @@ class BootStrap {
 		if ((Environment.current == Environment.DEVELOPMENT) ||
 		(Environment.current == Environment.TEST)) {
 
-			Cliente c0 = new Cliente(nombre: 'Cliente 0',direccion: 'Dirección cliente 0',contacto: 'Contacto cliente 0').save()
+			Cliente c0 = new Cliente(nombre: 'Cliente 0',direccion: 'Dirección cliente 0',contacto: 'Contacto cliente 0',telefono: '15-6987-4526', mail:'cliente0@mail.com').save()
 			Cliente c1 = new Cliente(nombre: 'Cliente 1',direccion: 'Dirección cliente 1',contacto: 'Contacto cliente 1').save()
 			Cliente c2 = new Cliente(nombre: 'Cliente 2',direccion: 'Dirección cliente 2',contacto: 'Contacto cliente 2').save()
 			Cliente c3 = new Cliente(nombre: 'Cliente 3',direccion: 'Dirección cliente 3',contacto: 'Contacto cliente 3').save()
