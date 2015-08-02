@@ -5,7 +5,8 @@
 <title>Campo Chico - Hoja de ruta</title>
 </head>
 <body>
-	<h1>Los clientes de hoy son:</h1>
+	<h1>Zona: ${todayZoneName}</h1>
+	<h2>Los clientes de hoy son:</h2>
 	<table class="table table-striped table-hover ">
 		<thead>
 			<tr>

@@ -19,4 +19,11 @@ class VentaProducto {
 		cantidad blank:false, nullable:false
 		precioVentaUnitario blank:false, nullable:false
 	}
+
+	@Override
+	public String toString() {
+		return "VentaProducto [producto=" + producto + ", cantidad=" + cantidad
+				+ ", precioVentaUnitario=" + precioVentaUnitario + "]";
+	}	
+	
 }

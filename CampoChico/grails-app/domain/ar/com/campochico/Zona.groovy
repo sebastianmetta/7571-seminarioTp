@@ -10,7 +10,9 @@ import org.joda.time.LocalDate
 class Zona {
 
 	String nombre
-
+	List diasVisita
+	List clientes
+	
 	static hasMany = [
 		diasVisita: DiaVisitaCliente,
 		clientes: Cliente

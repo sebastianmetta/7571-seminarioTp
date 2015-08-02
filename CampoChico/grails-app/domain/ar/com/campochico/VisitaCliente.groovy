@@ -8,10 +8,12 @@ package ar.com.campochico
 class VisitaCliente {
 	Date fecha
 	Cliente cliente
-	static hasMany = [productosVendidos: VentaProducto]
+	List productosVendidos
 	double importeCobrado
 	double importeAdeudado
 	String observaciones
+	
+	static hasMany = [productosVendidos: VentaProducto]
 
 	static constraints = {
 		fecha blank:false, nullable:false
