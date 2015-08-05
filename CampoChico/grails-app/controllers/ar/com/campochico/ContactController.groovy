@@ -9,8 +9,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ContactController {
 	//TODO: Revisar el update.
-	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-	
+	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
 	def index(Integer max) {
 		redirect(action: "list", params: params)
 	}
@@ -40,21 +40,16 @@ class ContactController {
 			return
 		}
 
-		
+
 		int phoneCount = 0
-		boolean morePhones = true
-		while(morePhones) {
-			def phoneAsString = params.get('phonesList[' + phoneCount + ']')
-			if (phoneAsString!=null) {				
-				Phone phone = new Phone(params.get('phonesList[' + phoneCount + ']'))
-				contactInstance.addToPhones(phone)
-				phoneCount++
-			}
-			else {
-				morePhones = false
-			}
+		def phoneAsString = params.get('phonesList[' + phoneCount + ']')
+		while(phoneAsString!=null) {
+			Phone phone = new Phone(params.get('phonesList[' + phoneCount + ']'))
+			contactInstance.addToPhones(phone)
+			phoneCount++
+			phoneAsString = params.get('phonesList[' + phoneCount + ']')
 		}
-		
+
 		contactInstance.save flush:true
 
 		request.withFormat {
@@ -86,7 +81,7 @@ class ContactController {
 		}
 
 
-		//contactInstance.properties = params
+		contactInstance.properties = params
 
 		// find the phones that are marked for deletion
 		def _toBeDeleted = contactInstance.phones.findAll {(it?.deleted || (it == null))}

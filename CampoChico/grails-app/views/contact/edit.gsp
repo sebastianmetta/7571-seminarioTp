@@ -23,9 +23,9 @@
             </div>
             </g:hasErrors>
             <g:form method="post" >
-                <g:hiddenField name="id" value="${contactInstance?.id}" />
+				<g:hiddenField name="id" value="${contactInstance?.id}" />
                 <g:hiddenField name="version" value="${contactInstance?.version}" />
-                
+
                 <!-- Render the contact template (_contact.gsp) here -->
                 <g:render template="contact" model="['contactInstance':contactInstance]"/>
                 <!-- Render the contact template (_contact.gsp) here -->
@@ -39,7 +39,6 @@
         
         <!-- Render the phone template (_phone.gsp) hidden so we can clone it -->
         <g:render template='phone' model="['phone':null,'i':'_clone','hidden':true]"/>
-        <!-- Render the phone template (_phone.gsp) hidden so we can clone it -->
         
     </body>
 </html>
