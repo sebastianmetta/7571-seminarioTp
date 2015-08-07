@@ -79,7 +79,6 @@ class ContactController {
 			return
 		}
 
-
 		contactInstance.properties = params
 
 		//Ejemplo de lo que viene en params -> [id:1, deleted:false, new:false, number:47120867, type:H]
@@ -105,7 +104,6 @@ class ContactController {
 			phoneCount++
 			phoneParams = params.get('phonesList[' + phoneCount + ']')
 		}
-
 
 		contactInstance.save flush:true
 
