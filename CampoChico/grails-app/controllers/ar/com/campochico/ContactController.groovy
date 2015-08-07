@@ -8,7 +8,6 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class ContactController {
-	//TODO: Revisar el update.
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	def index(Integer max) {
@@ -40,7 +39,7 @@ class ContactController {
 			return
 		}
 
-
+		//Se dan de alta los elementos asociados
 		int phoneCount = 0
 		def phoneAsString = params.get('phonesList[' + phoneCount + ']')
 		while(phoneAsString!=null) {
@@ -83,17 +82,28 @@ class ContactController {
 
 		contactInstance.properties = params
 
-		// find the phones that are marked for deletion
-		def _toBeDeleted = contactInstance.phones.findAll {(it?.deleted || (it == null))}
-
-		// if there are phones to be deleted remove them all
-		if (_toBeDeleted) {
-			contactInstance.phones.removeAll(_toBeDeleted)
-		}
-
-		//update my indexes
-		contactInstance.phones.eachWithIndex(){phn, i ->
-			phn.index = i
+		//Ejemplo de lo que viene en params -> [id:1, deleted:false, new:false, number:47120867, type:H]
+		int phoneCount = 0
+		def phoneParams = params.get('phonesList[' + phoneCount + ']')
+		while(phoneParams!=null) {
+			def phone = Phone.get(phoneParams['id'])
+			if (phoneParams['deleted'].equals("true")) {				
+				//Baja
+				contactInstance.phones.remove(phone)
+			}
+			else {
+				if (phone) {					
+					//Actualización
+					phone.properties=phoneParams
+				}
+				else {
+					//Alta
+					phone = new Phone(params.get('phonesList[' + phoneCount + ']'))
+					contactInstance.addToPhones(phone)
+				}
+			}
+			phoneCount++
+			phoneParams = params.get('phonesList[' + phoneCount + ']')
 		}
 
 

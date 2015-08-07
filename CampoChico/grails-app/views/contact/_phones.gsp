@@ -1,6 +1,6 @@
 <script type="text/javascript">
     var childCount = ${contactInstance?.phones.size()} + 0;
-
+    
     function addPhone(){
       var clone = $("#phone_clone").clone()
       var htmlId = 'phonesList['+childCount+'].';
@@ -48,12 +48,33 @@
     }
 </script>
 
+<script type="text/javascript">
+   $(document).ready(function() {
+      $('[id^="delete-icon"]').on('click', function(){
+          //find the parent div
+          var prnt = $(this).parents(".phone-div");
+          //find the deleted hidden input
+          var delInput = prnt.find("input[id$=deleted]");
+          //check if this is still not persisted
+          var newValue = prnt.find("input[id$=new]").attr('value');
+          //if it is new then i can safely remove from dom
+          if(newValue == 'true'){
+              prnt.remove();
+          }else{
+              //set the deletedFlag to true
+              delInput.attr('value','true');
+              //hide the div
+              prnt.hide();
+          }
+      });
+   });
+</script>
+
 <div id="childList">
 	<g:each var="phone" in="${contactInstance.phones}" status="i">
 
 		<!-- Render the phone template (_phone.gsp) here -->
-		<g:render template='phone'
-			model="['phone':phone,'i':i,'hidden':false]" />
+		<g:render template='phone' model="['phone':phone,'i':i,'hidden':false]" />
 		<!-- Render the phone template (_phone.gsp) here -->
 
 	</g:each>
