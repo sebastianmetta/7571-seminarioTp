@@ -36,7 +36,7 @@ class Phone {
     static mapping = {
         index column:"phone_index"
     }
- 
+	//TODO: Al probar la venta, no poner el index y ver si funciona igual. Debería.
     int index
     String number
     PhoneType type
