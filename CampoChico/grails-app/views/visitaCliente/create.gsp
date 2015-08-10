@@ -29,9 +29,12 @@
         <g:render template="visitaCliente" model="['visitaClienteInstance':visitaClienteInstance]"/>
         <!-- Render the visitaClienteInstance template (_visitaClienteInstance.gsp) here -->
 
-        <div class="buttons">
-          <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
-        </div>
+		<fieldset class="buttons">
+			<div class="col-lg-10">
+				<g:actionSubmit name="create" class="btn btn-primary" action="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+			</div>
+		</fieldset>
+        
       </g:form>
     </div>
     

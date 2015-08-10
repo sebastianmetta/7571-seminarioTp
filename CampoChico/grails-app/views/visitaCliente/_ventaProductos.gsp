@@ -71,4 +71,9 @@
 
 	</g:each>
 </div>
-<input type="button" value="Agregar venta" onclick="addVentaProducto();" />
+
+<fieldset class="buttons col-lg-1" >
+	<input type="button" class="btn btn-success" value="Agregar venta" onclick="addVentaProducto();" />
+</fieldset>
+
+

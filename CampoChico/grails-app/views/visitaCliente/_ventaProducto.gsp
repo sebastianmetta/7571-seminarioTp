@@ -6,19 +6,29 @@
 	<g:hiddenField name='ventaProductosList[${i}].new' value="${ventaProducto?.id == null?'true':'false'}"/>
     
     <label>Producto: </label>
+    <%-- 
     <g:select name="ventaProductosList[${i}].producto"
         from="${ar.com.campochico.Producto.list()}"
-        value = "${producto?.nombre}"
+        value = "${ventaProductoproducto?.nombre}"
         optionKey="id" />
+    --%>
+    <g:select name="ventaProductosList[${i}].producto" 
+	    from="${ar.com.campochico.Producto.list()}"
+    	value = "${ventaProducto?.producto?.id}"
+		optionKey="id" 
+		optionValue="nombre" />
+	
     
     <label>Cantidad: </label>
-    <g:textField name='ventaProductosList[${i}].cantidad' value='${ventaProducto?.cantidad}' />
+    <g:textField name='ventaProductosList[${i}].cantidad' 
+    			value="${formatNumber(number:ventaProducto?.cantidad, type: 'number', maxFractionDigits: 2)}" />
     
     <label>Precio unitario: </label>
-    <g:textField name='ventaProductosList[${i}].precioVentaUnitario' value='${ventaProducto?.precioVentaUnitario}' />
+    <g:textField name='ventaProductosList[${i}].precioVentaUnitario' 
+    			value="${formatNumber(number:ventaProducto?.precioVentaUnitario, type: 'number', maxFractionDigits: 2)}" />
 
     <span id="delete-icon${UUID.randomUUID()}" class="del-ventaProducto" >
-        <img src="${resource(dir:'images', file:'icon_delete.png')}" style="vertical-align:middle;"/>
+        <label class="glyphicon glyphicon-remove"></label>
     </span>
         
 </div>
