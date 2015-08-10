@@ -8,10 +8,12 @@ package ar.com.campochico
 class VisitaCliente {
 	Date fecha
 	Cliente cliente
-	List productosVendidos
+	List productosVendidos = new ArrayList()
 	double importeCobrado
 	double importeAdeudado
 	String observaciones
+	
+	static mapping = { productosVendidos cascade:"all-delete-orphan" }
 	
 	static hasMany = [productosVendidos: VentaProducto]
 

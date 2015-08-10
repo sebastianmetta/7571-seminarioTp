@@ -7,13 +7,17 @@ package ar.com.campochico
  */
 class VentaProducto {
 
+	//Producto producto
 	Producto producto
 	double cantidad
 	double precioVentaUnitario
+	boolean deleted
 
 	//Entidad débil.
 	static belongsTo = VisitaCliente
 
+	static transients = [ 'deleted' ]
+	
 	static constraints = {
 		producto blank:false, nullable:false
 		cantidad blank:false, nullable:false
@@ -22,8 +26,7 @@ class VentaProducto {
 
 	@Override
 	public String toString() {
-		return "VentaProducto [producto=" + producto + ", cantidad=" + cantidad
-				+ ", precioVentaUnitario=" + precioVentaUnitario + "]";
+		return producto.toString() + " - " + cantidad + " - " + precioVentaUnitario
 	}	
 	
 }

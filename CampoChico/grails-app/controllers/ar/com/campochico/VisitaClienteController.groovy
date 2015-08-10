@@ -1,107 +1,156 @@
 package ar.com.campochico
 
+
+
 import static org.springframework.http.HttpStatus.*
-
-import org.apache.log4j.Logger;
-
-import grails.converters.JSON
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class VisitaClienteController {
-	static scaffold = true
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-	private static final Logger log = Logger.getLogger(VisitaClienteController.class)
-	
-    def show(VisitaCliente visitaClienteInstance) {
-        respond visitaClienteInstance
-    }
+	def index(Integer max) {
+		redirect(action: "list", params: params)
+	}
 
-    def create() {
-        respond new VisitaCliente(params)
-    }
+	def list = {
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		[visitaClienteInstanceList: VisitaCliente.list(params), visitaClienteInstanceTotal: VisitaCliente.count()]
+	}
 
-    @Transactional
-    def save(VisitaCliente visitaClienteInstance) {
-		
-		println ("Guardando nueva visita cliente: " + visitaClienteInstance)
-		
-        if (visitaClienteInstance == null) {
-            notFound()
-            return
-        }
-
-        if (visitaClienteInstance.hasErrors()) {
-            respond visitaClienteInstance.errors, view:'create'
-            return
-        }
-
-        visitaClienteInstance.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'visitaCliente.label', default: 'VisitaCliente'), visitaClienteInstance.id])
-                redirect visitaClienteInstance
-            }
-            '*' { respond visitaClienteInstance, [status: CREATED] }
-        }
-    }
-
-    def edit(VisitaCliente visitaClienteInstance) {
+	def show(VisitaCliente visitaClienteInstance) {
 		respond visitaClienteInstance
-    }
+	}
 
-    @Transactional
-    def update(VisitaCliente visitaClienteInstance) {
-		println ("Actualizando visita cliente: " + visitaClienteInstance)
-        if (visitaClienteInstance == null) {
-            notFound()
-            return
-        }
+	def create() {
+		respond new VisitaCliente(params)
+	}
 
-        if (visitaClienteInstance.hasErrors()) {
-            respond visitaClienteInstance.errors, view:'edit'
-            return
-        }
+	@Transactional
+	def save(VisitaCliente visitaClienteInstance) {
+		if (visitaClienteInstance == null) {
+			notFound()
+			return
+		}
 
-        visitaClienteInstance.save flush:true
+		if (visitaClienteInstance.hasErrors()) {
+			respond visitaClienteInstance.errors, view:'create'
+			return
+		}
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'VisitaCliente.label', default: 'VisitaCliente'), visitaClienteInstance.id])
-                redirect visitaClienteInstance
-            }
-            '*'{ respond visitaClienteInstance, [status: OK] }
-        }
-    }
+		//Se dan de alta los elementos asociados
+		int ventaProductoCount = 0
+		def ventaProductoAsString = params.get('ventaProductosList[' + ventaProductoCount + ']')
+		while(ventaProductoAsString!=null) {
+			VentaProducto ventaProducto = new VentaProducto(params.get('ventaProductosList[' + ventaProductoCount + ']'))
+			visitaClienteInstance.addToProductosVendidos(ventaProducto)
+			ventaProductoCount++
+			ventaProductoAsString = params.get('ventaProductosList[' + ventaProductoCount + ']')
+		}
 
-    @Transactional
-    def delete(VisitaCliente visitaClienteInstance) {
+		visitaClienteInstance.save flush:true
 
-        if (visitaClienteInstance == null) {
-            notFound()
-            return
-        }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [
+					message(code: 'visitaCliente.label', default: 'VisitaCliente'),
+					visitaClienteInstance.id
+				])
+				redirect visitaClienteInstance
+			}
+			'*' { respond visitaClienteInstance, [status: CREATED] }
+		}
+	}
 
-        visitaClienteInstance.delete flush:true
+	def edit(VisitaCliente visitaClienteInstance) {
+		respond visitaClienteInstance
+	}
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'VisitaCliente.label', default: 'VisitaCliente'), visitaClienteInstance.id])
-                redirect action:"create", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+	@Transactional
+	def update(VisitaCliente visitaClienteInstance) {
+		if (visitaClienteInstance == null) {
+			notFound()
+			return
+		}
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'visitaCliente.label', default: 'VisitaCliente'), params.id])
-                redirect action: "create", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
+		if (visitaClienteInstance.hasErrors()) {
+			respond visitaClienteInstance.errors, view:'edit'
+			return
+		}
+
+		visitaClienteInstance.properties = params
+
+		//Ejemplo de lo que viene en params -> [id:1, deleted:false, new:false, number:47120867, type:H]
+		
+		int ventaProductoCount = 0
+		def ventaProductoParams = params.get('ventaProductosList[' + ventaProductoCount + ']')
+		while(ventaProductoParams!=null) {
+			def ventaProducto = VentaProducto.get(ventaProductoParams['id'])
+			if (ventaProductoParams['deleted'].equals("true")) {				
+				//Baja
+				visitaClienteInstance.productosVendidos.remove(ventaProducto)
+			}
+			else {
+				if (ventaProducto) {					
+					//Actualización
+					ventaProducto.properties=ventaProductoParams
+				}
+				else {
+					//Alta
+					ventaProducto = new VentaProducto(params.get('ventaProductosList[' + ventaProductoCount + ']'))
+					visitaClienteInstance.addToProductosVendidos(ventaProducto)
+				}
+			}
+			ventaProductoCount++
+			ventaProductoParams = params.get('ventaProductosList[' + ventaProductoCount + ']')
+		}
+
+		visitaClienteInstance.save flush:true
+
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [
+					message(code: 'VisitaCliente.label', default: 'VisitaCliente'),
+					visitaClienteInstance.id
+				])
+				redirect visitaClienteInstance
+			}
+			'*'{ respond visitaClienteInstance, [status: OK] }
+		}
+	}
+
+	@Transactional
+	def delete(VisitaCliente visitaClienteInstance) {
+
+		if (visitaClienteInstance == null) {
+			notFound()
+			return
+		}
+
+		visitaClienteInstance.delete flush:true
+
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [
+					message(code: 'VisitaCliente.label', default: 'VisitaCliente'),
+					visitaClienteInstance.id
+				])
+				redirect action:"index", method:"GET"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
+
+	protected void notFound() {
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [
+					message(code: 'visitaCliente.label', default: 'VisitaCliente'),
+					params.id
+				])
+				redirect action: "index", method: "GET"
+			}
+			'*'{ render status: NOT_FOUND }
+		}
+	}
 }

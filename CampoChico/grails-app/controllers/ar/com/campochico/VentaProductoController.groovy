@@ -16,7 +16,7 @@ class VentaProductoController {
     }
 
     def show(VentaProducto ventaProductoInstance) {
-        respond ventaProductoInstance
+		respond ventaProductoInstance
     }
 
     def create() {
