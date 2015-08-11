@@ -2,6 +2,10 @@
 *Db.properties
 *Db.script
 .settings
+.classpath
+.project
+eclipse
+target
 stacktrace.log
 /*.zip
 /plugin.xml
@@ -14,3 +18,4 @@ CampoChico/.classpath
 CampoChico/.project
 CampoChico/.settings
 /.metadata
+
