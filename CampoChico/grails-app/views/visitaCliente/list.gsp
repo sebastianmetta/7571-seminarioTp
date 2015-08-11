@@ -54,7 +54,6 @@
 
 						<td>
 							<g:link action="show" id="${visitaClienteInstance.id}">
-								<%-- ${fieldValue(bean: visitaClienteInstance, field: "fecha")} --%>
 								<g:formatDate format="yyyy-MM-dd" date="${visitaClienteInstance.fecha}"/>
 							</g:link></td>
 						<td>

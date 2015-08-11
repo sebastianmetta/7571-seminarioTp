@@ -13,13 +13,16 @@ class HojaDeRutaController {
 	// ¿Cómo sabe que servicio inyectar? Usa una convención para determinar que servicio debe
 	// inyectar. En este caso puso en mayúscula la primera letra y busco UserService
 	def zonaService
+	def visitaClienteService
 
 	def index() {
 		redirect(action: "list", params: params)
 	}
 
 	def list() {
-		[todayZoneName:zonaService.todayZoneName(), todayClientsList: zonaService.todayClients()]
+		[todayZoneName:zonaService.todayZoneName(), 
+			todayClientsList: zonaService.todayClients(), 
+			todayClientsVisitsList: visitaClienteService.getTodayClientVisits()]
 	}
 
 }

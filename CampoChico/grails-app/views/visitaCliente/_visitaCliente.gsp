@@ -9,13 +9,21 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: visitaClienteInstance, field: 'cliente', 'error')} required">
+<div id="clienteContainer" class="fieldcontain ${hasErrors(bean: visitaClienteInstance, field: 'cliente', 'error')} required">
 	<label for="cliente" class="col-lg-2 control-label">
 		<g:message code="visitaCliente.cliente.label" default="Cliente" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="cliente" name="cliente.id" from="${ar.com.campochico.Cliente.list()}" optionKey="id" required="" value="${visitaClienteInstance?.cliente?.id}" class="many-to-one"/>
+</div>
 
+<div>
+	<g:javascript >
+	    var idCliente = "${params.idCliente}";
+		if( idCliente ){
+			$( "div" ).find("select[id$='cliente']").val(idCliente);
+		};
+	</g:javascript>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: visitaClienteInstance, field: 'importeCobrado', 'error')} required">
