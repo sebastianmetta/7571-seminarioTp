@@ -24,18 +24,16 @@
       </g:hasErrors>
 
         <g:form action="save" method="post" >
-
-        <!-- Render the visitaClienteInstance template (_visitaClienteInstance.gsp) here -->
-        <g:render template="visitaCliente" model="['visitaClienteInstance':visitaClienteInstance]"/>
-        <!-- Render the visitaClienteInstance template (_visitaClienteInstance.gsp) here -->
-
-		<fieldset class="buttons">
-			<div class="col-lg-10">
-				<g:actionSubmit name="create" class="btn btn-primary" action="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-			</div>
-		</fieldset>
-        
-      </g:form>
+	        <!-- Render the visitaClienteInstance template (_visitaClienteInstance.gsp) here -->
+	        <g:render template="visitaCliente" model="['visitaClienteInstance':visitaClienteInstance]"/>
+	        <!-- Render the visitaClienteInstance template (_visitaClienteInstance.gsp) here -->
+	
+			<fieldset class="buttons">
+				<div class="col-lg-10">
+					<g:actionSubmit name="create" class="btn btn-primary" action="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				</div>
+			</fieldset>
+      	</g:form>
     </div>
     
     <!-- Render the ventaProducto template (_ventaProducto.gsp) hidden so we can clone it -->

@@ -20,9 +20,19 @@ class HojaDeRutaController {
 	}
 
 	def list() {
-		[todayZoneName:zonaService.todayZoneName(), 
-			todayClientsList: zonaService.todayClients(), 
-			todayClientsVisitsList: visitaClienteService.getTodayClientVisits()]
+		LocalDate localDate
+		if (params.fechaZona) {
+			def fechaAsString = params.fechaZona_year + "-" + params.fechaZona_month + "-" + params.fechaZona_day
+			localDate= new LocalDate(fechaAsString)
+		}
+		else {
+			localDate= new LocalDate()
+		}
+		[zoneName:zonaService.zoneName(localDate),
+			clientsList: zonaService.zoneClients(localDate),
+			clientsVisitsList: visitaClienteService.getClientVisitsByDia(localDate.toDate()),
+			zoneDate: localDate.toDate()
+			]
 	}
 
 }

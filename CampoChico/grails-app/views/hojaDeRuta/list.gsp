@@ -5,8 +5,12 @@
 <title>Campo Chico - Hoja de ruta</title>
 </head>
 <body>
-	<h1>Zona: ${todayZoneName}</h1>
-	<h2>Los clientes de hoy son:</h2>
+	<h1>Hoja de ruta zona: ${zoneName}</h1>
+	<g:form action="list" method="get" >
+		<g:datePicker name="fechaZona" value="${zoneDate}" precision="day"/>
+		<g:actionSubmit name="listZone" class="btn btn-success btn-sm" action="list" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
+	</g:form>
+	
 	<table class="table table-striped table-hover ">
 		<thead>
 			<tr>
@@ -24,7 +28,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<g:each in="${todayClientsList}" var="clienteInstance">
+			<g:each in="${clientsList}" var="clienteInstance">
 				<tr>
 					<td>${fieldValue(bean: clienteInstance, field: "nombre")}</td>
 					<td>${fieldValue(bean: clienteInstance, field: "direccion")}</td>
@@ -32,7 +36,7 @@
 					<td>${fieldValue(bean: clienteInstance, field: "contacto")}</td>
 					<td>${fieldValue(bean: clienteInstance, field: "mail")}</td>
 					<td>
-						<g:set var="visitaCliente" value="${todayClientsVisitsList.findAll{ it.cliente?.id == clienteInstance.id }}"/>
+						<g:set var="visitaCliente" value="${clientsVisitsList.findAll{ it.cliente?.id == clienteInstance.id }}"/>
 						<g:if test="${!visitaCliente.isEmpty()}">
      						<g:link controller="visitaCliente" action="show" id="${visitaCliente.id}">
      							Ver

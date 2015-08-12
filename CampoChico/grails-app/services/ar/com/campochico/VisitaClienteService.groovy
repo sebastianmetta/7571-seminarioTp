@@ -12,10 +12,11 @@ class VisitaClienteService {
 		return VisitaCliente.findByFecha(fecha)
     }
 	
-	def getTodayClientVisits() {
-		List visitasCliente = VisitaCliente.withCriteria {
-			eq('fecha', new Date().clearTime())
-		}
-		return visitasCliente
-    }
+//	def getClientVisitsByDate(Date dateTo) {
+//		List visitasCliente = VisitaCliente.withCriteria {
+//			eq('fecha', dateTo.clearTime())
+//		}
+//		return visitasCliente
+//	}
+	
 }
