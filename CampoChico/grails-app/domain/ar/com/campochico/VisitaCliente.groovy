@@ -22,4 +22,9 @@ class VisitaCliente {
 		cliente blank:false, nullable:false
 		observaciones nullable:true
 	}
+	
+	@Override
+	public String toString() {
+		return "Fecha $fecha - Cliente: $cliente";
+	}
 }

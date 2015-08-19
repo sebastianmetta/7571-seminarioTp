@@ -8,15 +8,11 @@ class VisitaClienteService {
 	/**
 	 * Devuelve todas las Visitas a clientes para la fecha indicada
 	 */
-    def getClientVisitsByDia(Date fecha) {
-		return VisitaCliente.findByFecha(fecha)
-    }
-	
-//	def getClientVisitsByDate(Date dateTo) {
-//		List visitasCliente = VisitaCliente.withCriteria {
-//			eq('fecha', dateTo.clearTime())
-//		}
-//		return visitasCliente
-//	}
+	def getClientVisitsByDate(Date fecha) {
+		List visitasCliente = VisitaCliente.withCriteria {
+			eq('fecha', fecha.clearTime())
+		}
+		return visitasCliente
+	}
 	
 }

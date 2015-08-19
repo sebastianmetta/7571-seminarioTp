@@ -1,3 +1,4 @@
+<%@ page import="ar.com.campochico.VisitaCliente"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +37,16 @@
 					<td>${fieldValue(bean: clienteInstance, field: "contacto")}</td>
 					<td>${fieldValue(bean: clienteInstance, field: "mail")}</td>
 					<td>
-						<g:set var="visitaCliente" value="${clientsVisitsList.findAll{ it.cliente?.id == clienteInstance.id }}"/>
-						<g:if test="${!visitaCliente.isEmpty()}">
+						<%
+						def visitaCliente = null
+						clientsVisitsList.each {
+							VisitaCliente eachVisita = it  
+    						if (eachVisita.cliente.id == clienteInstance.id) {
+								visitaCliente = eachVisita
+    						}
+						}
+						%>
+						<g:if test="${visitaCliente!=null}">
      						<g:link controller="visitaCliente" action="show" id="${visitaCliente.id}">
      							Ver
 							</g:link>

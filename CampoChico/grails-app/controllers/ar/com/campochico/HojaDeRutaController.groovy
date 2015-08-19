@@ -28,9 +28,10 @@ class HojaDeRutaController {
 		else {
 			localDate= new LocalDate()
 		}
+		//TODO: Revisar que getClientVisitsByDia ande bien. Si anda bien, revisar la vista.
 		[zoneName:zonaService.zoneName(localDate),
 			clientsList: zonaService.zoneClients(localDate),
-			clientsVisitsList: visitaClienteService.getClientVisitsByDia(localDate.toDate()),
+			clientsVisitsList: visitaClienteService.getClientVisitsByDate(localDate.toDate()),
 			zoneDate: localDate.toDate()
 			]
 	}
