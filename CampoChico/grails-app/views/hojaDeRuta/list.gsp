@@ -52,7 +52,7 @@
 							</g:link>
 						</g:if>
 						<g:else>
-						    <g:link controller="visitaCliente" action="create" params="[idCliente: "${clienteInstance.id}"]">
+							<g:link controller="visitaCliente" action="create" params="[idCliente: "${clienteInstance.id}", fechaToShow:"${zoneDate.format('yyyy-MM-dd')}"]">
 						    	Crear
 							</g:link>
 						</g:else>

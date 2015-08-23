@@ -6,7 +6,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="fecha" precision="day"  value="${visitaClienteInstance?.fecha}"  />
-
 </div>
 
 <div id="clienteContainer" class="fieldcontain ${hasErrors(bean: visitaClienteInstance, field: 'cliente', 'error')} required">
@@ -22,6 +21,14 @@
 	    var idCliente = "${params.idCliente}";
 		if( idCliente ){
 			$( "div" ).find("select[id$='cliente']").val(idCliente);
+		};
+		
+		var fechaAMostrar = "${params.fechaToShow}";
+		if( fechaAMostrar ){
+			var dateParts = fechaAMostrar.split('-');
+			$( "div" ).find("select[id$='fecha_day']").val(parseInt(dateParts[2]));
+			$( "div" ).find("select[id$='fecha_month']").val(parseInt(dateParts[1]));
+			$( "div" ).find("select[id$='fecha_year']").val(parseInt(dateParts[0]));
 		};
 	</g:javascript>
 </div>
