@@ -9,10 +9,9 @@ class HojaDeRutaController {
 	//Helpful when controller actions are exposed as REST service.
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-	// Grails inyectará el servicio en esta propiedad
-	// ¿Cómo sabe que servicio inyectar? Usa una convención para determinar que servicio debe
-	// inyectar. En este caso puso en mayúscula la primera letra y busco UserService
+	// Grails inyecta los servicios por convencion de nombres.
 	def zonaService
+	
 	def visitaClienteService
 
 	def index() {
