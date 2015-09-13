@@ -1,9 +1,7 @@
 *.iws
 *Db.properties
 *Db.script
-.settings
 .classpath
-.project
 eclipse
 target
 stacktrace.log
@@ -15,7 +13,6 @@ CampoChico/target/
 CampoChico/web-app/plugins
 CampoChico/web-app/WEB-INF/classes
 CampoChico/.classpath
-CampoChico/.project
 CampoChico/.settings
 /.metadata
 

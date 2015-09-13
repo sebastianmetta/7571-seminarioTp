@@ -1,14 +1,17 @@
 package ar.com.campochico
 
+import groovy.transform.ToString;
+
 /**
  * Representa la venta de un producto a un cliente.
  * @author sebastian
  *
  */
+@ToString(includeNames=true)
 class VentaProducto {
 
-	//Producto producto
 	Producto producto
+	Proveedor proveedor
 	double cantidad
 	double precioVentaUnitario
 	boolean deleted
@@ -20,13 +23,9 @@ class VentaProducto {
 	
 	static constraints = {
 		producto blank:false, nullable:false
+		proveedor blank:false, nullable:false
 		cantidad blank:false, nullable:false
 		precioVentaUnitario blank:false, nullable:false
 	}
-
-	@Override
-	public String toString() {
-		return producto.toString() + " - " + cantidad + " - " + precioVentaUnitario
-	}	
 	
 }
