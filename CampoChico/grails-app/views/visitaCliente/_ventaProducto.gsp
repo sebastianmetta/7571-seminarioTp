@@ -5,20 +5,26 @@
     <g:hiddenField name='ventaProductosList[${i}].deleted' value='false'/>
 	<g:hiddenField name='ventaProductosList[${i}].new' value="${ventaProducto?.id == null?'true':'false'}"/>
     
-    <label>Producto: </label>
     <%-- 
     <g:select name="ventaProductosList[${i}].producto"
         from="${ar.com.campochico.Producto.list()}"
         value = "${ventaProductoproducto?.nombre}"
         optionKey="id" />
     --%>
+    <label>Producto: </label>
     <g:select name="ventaProductosList[${i}].producto" 
 	    from="${ar.com.campochico.Producto.list()}"
     	value = "${ventaProducto?.producto?.id}"
 		optionKey="id" 
 		optionValue="nombre" />
 	
-    
+	<label>Proveedor: </label>	
+	<g:select name="ventaProductosList[${i}].proveedor" 
+	    from="${ar.com.campochico.Proveedor.list()}"
+    	value = "${ventaProducto?.proveedor?.id}"
+		optionKey="id" 
+		optionValue="nombre" />
+	
     <label>Cantidad: </label>
     <g:textField name='ventaProductosList[${i}].cantidad' 
     			value="${formatNumber(number:ventaProducto?.cantidad, type: 'number', maxFractionDigits: 2)}" />

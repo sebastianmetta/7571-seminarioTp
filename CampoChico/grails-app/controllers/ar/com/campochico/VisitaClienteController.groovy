@@ -80,8 +80,6 @@ class VisitaClienteController {
 
 		visitaClienteInstance.properties = params
 
-		//Ejemplo de lo que viene en params -> [id:1, deleted:false, new:false, number:47120867, type:H]
-		
 		int ventaProductoCount = 0
 		def ventaProductoParams = params.get('ventaProductosList[' + ventaProductoCount + ']')
 		while(ventaProductoParams!=null) {

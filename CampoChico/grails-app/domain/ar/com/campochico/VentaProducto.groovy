@@ -7,7 +7,7 @@ import groovy.transform.ToString;
  * @author sebastian
  *
  */
-@ToString(includeNames=true)
+@ToString(includeNames=false,includePackage=false)
 class VentaProducto {
 
 	Producto producto

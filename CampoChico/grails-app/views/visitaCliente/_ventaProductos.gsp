@@ -11,6 +11,7 @@
       clone.find("input[id$=new]").attr('id',htmlId + 'new').attr('name',htmlId + 'new').attr('value', 'true');
 
       clone.find("select[id$='producto']").attr('id',htmlId + 'producto').attr('name',htmlId + 'producto');
+      clone.find("select[id$='proveedor']").attr('id',htmlId + 'proveedor').attr('name',htmlId + 'proveedor');
       clone.find("input[id$='cantidad']").attr('id',htmlId + 'cantidad').attr('name',htmlId + 'cantidad');
       clone.find("input[id$='precioVentaUnitario']").attr('id',htmlId + 'precioVentaUnitario').attr('name',htmlId + 'precioVentaUnitario');
 
