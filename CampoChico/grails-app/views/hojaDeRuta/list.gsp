@@ -1,4 +1,6 @@
 <%@ page import="ar.com.campochico.VisitaCliente"%>
+<r:require module="export"/>
+<export:resource />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 		<g:datePicker name="fechaZona" value="${zoneDate}" precision="day"/>
 		<g:actionSubmit name="listZone" class="btn btn-success btn-sm" action="list" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
 	</g:form>
-	
+	<export:formats formats="['csv', 'excel', 'ods', 'pdf', 'rtf', 'xml']" />
 	<table class="table table-striped table-hover ">
 		<thead>
 			<tr>

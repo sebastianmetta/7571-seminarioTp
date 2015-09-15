@@ -8,7 +8,7 @@ stacktrace.log
 /*.zip
 /plugin.xml
 /*.log
-CampoChico/target/
+**/target/**
 /out/
 CampoChico/web-app/plugins
 CampoChico/web-app/WEB-INF/classes

@@ -12,7 +12,7 @@ grails.project.fork = [
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
 
     // configure settings for the test-app JVM, uses the daemon by default
-    test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
+    test: [maxMemory: 768, minMemory: 64, debug: false, daemon:true],
     // configure settings for the run-app JVM
 	//run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
 	run: [maxMemory: 2048, minMemory: 64, debug: false, forkReserve:false],
@@ -43,6 +43,9 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+		
+		mavenRepo "http://repo.grails.org/grails/core"
+		
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -56,6 +59,9 @@ grails.project.dependency.resolution = {
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
 		compile 'joda-time:joda-time:2.8'
 		compile 'org.apache.commons:commons-collections4:4.0'
+		
+		compile 'commons-beanutils:commons-beanutils:1.8.3'
+		
     }
 
     plugins {
@@ -66,11 +72,13 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
         compile ":asset-pipeline:2.1.5"
+        compile ":export:1.6"
 		
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.8.1" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+		
 		
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
