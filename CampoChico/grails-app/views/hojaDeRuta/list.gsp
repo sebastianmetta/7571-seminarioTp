@@ -47,7 +47,7 @@
 			<g:each in="${clientsList}" var="clienteInstance">
 				<tr>
 					<td>${fieldValue(bean: clienteInstance, field: "nombre")}</td>
-					<td>${fieldValue(bean: clienteInstance, fieldbar: "direccion")}</td>
+					<td>${fieldValue(bean: clienteInstance, field: "direccion")}</td>
 					<td>${fieldValue(bean: clienteInstance, field: "telefono")}</td>
 					<td>${fieldValue(bean: clienteInstance, field: "contacto")}</td>
 					<td>${fieldValue(bean: clienteInstance, field: "mail")}</td>

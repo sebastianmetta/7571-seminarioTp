@@ -7,6 +7,7 @@ class Cliente {
 	String telefono
 	String contacto
 	String mail
+	int ordenDeVisita
 
 	static constraints = {
 		nombre blank: false, nullable: false
@@ -14,6 +15,7 @@ class Cliente {
 		telefono blank: true, nullable: true
 		contacto blank: true, nullable: true
 		mail blank: true, nullable: true
+		ordenDeVisita blank: false, nullable: false
 	}
 	
 	@Override

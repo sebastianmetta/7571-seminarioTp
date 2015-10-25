@@ -16,7 +16,7 @@ class ZonaService {
 	def grailsApplication  //inject GrailsApplication
 
 	/**
-	 * @return lista de Clientes correspondientes a la zona del día actual
+	 * @return lista de Clientes correspondientes a la zona del día actual ordenada por orden de visita
 	 */
 	@Transactional(readOnly = true)
 	def zoneClients(LocalDate localDate) {
@@ -27,7 +27,7 @@ class ZonaService {
 					eq('id', dayToSearch.getId())
 				}
 			}
-			return zoneToReturn.first().getClientes()
+			return zoneToReturn.first().getClientes().sort{it.ordenDeVisita}
 		}
 		return null;
 	}
@@ -49,9 +49,6 @@ class ZonaService {
 		return null;
 	}
 
-	/**
-	 * @return la Zona correspondiente a la fecha o <code>null</code> si no hay definida una zona.
-	 */
 	def exportClientsListByDateToOutputStream(HttpServletResponse servletResponse, LocalDate localDate, String exportFormat, String exportExtension) {
 		servletResponse.contentType = grailsApplication.config.grails.mime.types[exportFormat]
 		servletResponse.setHeader("Content-disposition", "attachment; filename=Clientes.${exportExtension}")

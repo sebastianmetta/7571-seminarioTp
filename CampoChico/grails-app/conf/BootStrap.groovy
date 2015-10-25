@@ -21,18 +21,21 @@ class BootStrap {
 		if ((Environment.current == Environment.DEVELOPMENT) ||
 		(Environment.current == Environment.TEST)) {
 
-			Cliente c0 = new Cliente(nombre: 'Cliente 0',direccion: 'Dirección cliente 0',contacto: 'Contacto cliente 0',telefono: '15-6987-4500', mail:'cliente0@mail.com').save()
-			Cliente c1 = new Cliente(nombre: 'Cliente 1',direccion: 'Dirección cliente 1',contacto: 'Contacto cliente 1',telefono: '15-6987-4501', mail:'cliente1@mail.com').save()
-			Cliente c2 = new Cliente(nombre: 'Cliente 2',direccion: 'Dirección cliente 2',contacto: 'Contacto cliente 2',telefono: '15-6987-4502', mail:'cliente2@mail.com').save()
-			Cliente c3 = new Cliente(nombre: 'Cliente 3',direccion: 'Dirección cliente 3',contacto: 'Contacto cliente 3',telefono: '15-6987-4503', mail:'cliente3@mail.com').save()
-			Cliente c4 = new Cliente(nombre: 'Cliente 4',direccion: 'Dirección cliente 4',contacto: 'Contacto cliente 4').save()
-			Cliente c5 = new Cliente(nombre: 'Cliente 5',direccion: 'Dirección cliente 5',contacto: 'Contacto cliente 5').save()
-			Cliente c6 = new Cliente(nombre: 'Cliente 6',direccion: 'Dirección cliente 6',contacto: 'Contacto cliente 6',telefono: '15-6987-4506', mail:'cliente6@mail.com').save()
-			Cliente c7 = new Cliente(nombre: 'Cliente 7',direccion: 'Dirección cliente 7',contacto: 'Contacto cliente 7').save()
-			Cliente c8 = new Cliente(nombre: 'Cliente 8',direccion: 'Dirección cliente 8',contacto: 'Contacto cliente 8',telefono: '15-6987-4508', mail:'cliente8@mail.com').save()
-			Cliente c9 = new Cliente(nombre: 'Cliente 9',direccion: 'Dirección cliente 9',contacto: 'Contacto cliente 9').save()
-			Cliente c10 = new Cliente(nombre: 'Cliente 10',direccion: 'Dirección cliente 10',contacto: 'Contacto cliente 10',telefono: '15-6987-4510', mail:'cliente10@mail.com').save()
-			Cliente c11 = new Cliente(nombre: 'Cliente 11',direccion: 'Dirección cliente 11',contacto: 'Contacto cliente 11').save()
+			Cliente c0 = new Cliente(ordenDeVisita: 1, nombre: 'Cliente 0',direccion: 'Dirección cliente 0',contacto: 'Contacto cliente 0',telefono: '15-6987-4500', mail:'cliente0@mail.com').save()
+			Cliente c1 = new Cliente(ordenDeVisita: 2, nombre: 'Cliente 1',direccion: 'Dirección cliente 1',contacto: 'Contacto cliente 1',telefono: '15-6987-4501', mail:'cliente1@mail.com').save()
+			Cliente c2 = new Cliente(ordenDeVisita: 3, nombre: 'Cliente 2',direccion: 'Dirección cliente 2',contacto: 'Contacto cliente 2',telefono: '15-6987-4502', mail:'cliente2@mail.com').save()
+			
+			Cliente c3 = new Cliente(ordenDeVisita: 1, nombre: 'Cliente 3',direccion: 'Dirección cliente 3',contacto: 'Contacto cliente 3',telefono: '15-6987-4503', mail:'cliente3@mail.com').save()
+			Cliente c4 = new Cliente(ordenDeVisita: 2, nombre: 'Cliente 4',direccion: 'Dirección cliente 4',contacto: 'Contacto cliente 4').save()
+			Cliente c5 = new Cliente(ordenDeVisita: 3, nombre: 'Cliente 5',direccion: 'Dirección cliente 5',contacto: 'Contacto cliente 5').save()
+			
+			Cliente c6 = new Cliente(ordenDeVisita: 1, nombre: 'Cliente 6',direccion: 'Dirección cliente 6',contacto: 'Contacto cliente 6',telefono: '15-6987-4506', mail:'cliente6@mail.com').save()
+			Cliente c7 = new Cliente(ordenDeVisita: 2, nombre: 'Cliente 7',direccion: 'Dirección cliente 7',contacto: 'Contacto cliente 7').save()
+			Cliente c8 = new Cliente(ordenDeVisita: 3, nombre: 'Cliente 8',direccion: 'Dirección cliente 8',contacto: 'Contacto cliente 8',telefono: '15-6987-4508', mail:'cliente8@mail.com').save()
+			Cliente c9 = new Cliente(ordenDeVisita: 4, nombre: 'Cliente 9',direccion: 'Dirección cliente 9',contacto: 'Contacto cliente 9').save()
+			
+			Cliente c10 = new Cliente(ordenDeVisita: 1, nombre: 'Cliente 10',direccion: 'Dirección cliente 10',contacto: 'Contacto cliente 10',telefono: '15-6987-4510', mail:'cliente10@mail.com').save()
+			Cliente c11 = new Cliente(ordenDeVisita: 2, nombre: 'Cliente 11',direccion: 'Dirección cliente 11',contacto: 'Contacto cliente 11').save()
 
 			new Proveedor(nombre: 'Rimasa', direccion: 'Dirección Rimasa', contacto: 'Contacto Rimasa').save()
 			new Proveedor(nombre: 'Beroch', direccion: 'Dirección Beroch', contacto: 'Contacto Beroch').save()

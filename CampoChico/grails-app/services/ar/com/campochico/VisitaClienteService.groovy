@@ -2,6 +2,7 @@ package ar.com.campochico
 
 import grails.transaction.Transactional
 
+
 @Transactional
 class VisitaClienteService {
 
@@ -14,5 +15,5 @@ class VisitaClienteService {
 		}
 		return visitasCliente
 	}
-	
+
 }

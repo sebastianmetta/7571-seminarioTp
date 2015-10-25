@@ -4,11 +4,15 @@ package ar.com.campochico
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import groovy.time.TimeCategory
 
 @Transactional(readOnly = true)
 class VisitaClienteController {
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	// Grails inyecta los servicios por convencion de nombres.
+	def visitaClienteService
+	
 	def index(Integer max) {
 		redirect(action: "list", params: params)
 	}
