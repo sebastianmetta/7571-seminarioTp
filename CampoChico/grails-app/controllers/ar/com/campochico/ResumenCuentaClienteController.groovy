@@ -30,7 +30,11 @@ class ResumenCuentaClienteController {
 			resumenCuentaClienteService.exportResumenCuentaClienteToOutputStream(null, null, fechaDesde, fechaHasta, "", "")(response, fechaHasta, params.exportFormat, params.exportExtension)
 		}
 		else {
-			[ resumenList:resumenCuentaClienteService.getResumenCuenta(cliente, fechaDesde, fechaHasta) ]
+			[ 	resumenList:resumenCuentaClienteService.getResumenCuenta(cliente, fechaDesde, fechaHasta),
+				fechaDesdeLastValue: fechaDesde ,
+				fechaHastaLastValue: fechaHasta ,
+				clienteIdLastValue: cliente?.id 
+			]
 		}
 
 	}

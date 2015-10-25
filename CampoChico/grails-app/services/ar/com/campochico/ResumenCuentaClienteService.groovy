@@ -30,7 +30,6 @@ class ResumenCuentaClienteService {
 			order('fecha', 'asc')
 		}
 		//TODO: Obtener saldo desde el inicio hasta fecha desde y ponerlo como primer registro.
-		
 		BigDecimal saldoAnterior = BigDecimal.ZERO
 		for (VisitaCliente eachVisita : visitasCliente) {
 			//Iteramos las ventas de cada fecha del cliente para el saldo deudor

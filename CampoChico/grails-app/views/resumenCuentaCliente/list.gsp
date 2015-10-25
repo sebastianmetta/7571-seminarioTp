@@ -28,16 +28,21 @@
 	       </div>
 	    </div>
 	</div>
-	<g:if test="${resumenList.isEmpty()}">
+	<g:if test="${resumenList.isEmpty() && clienteIdLastValue!=null}">
 		<div class="alert alert-dismissible alert-warning">
 		  	<button type="button" class="close" data-dismiss="alert">×</button>
 			No existen resultados en su consulta.		  
 		</div>
 	</g:if>
 	<g:form action="list" method="get" >
-		<div id="fechaDesdeStyle"> <p>Fecha desde</p> <calendar:datePicker name="fechaDesdeNew" dateFormat="%d/%m/%Y" defaultValue="${new Date()}"/> </div> 
-		<div id="fechaHastaStyle"> <p>Fecha hasta</p> <calendar:datePicker name="fechaHastaNew" dateFormat="%d/%m/%Y" defaultValue="${new Date() - 1}"/> </div> 
-		<div id="clienteStyle"> <p>Cliente</p> <g:select id="cliente" name="clienteId" from="${ar.com.campochico.Cliente.list()}" optionKey="id" required="" class="many-to-one"/> </div>
+		<div id="fechaDesdeStyle"> <p>Fecha desde</p> <calendar:datePicker name="fechaDesdeNew" dateFormat="%d/%m/%Y" value="${fechaDesdeLastValue }" defaultValue="${new Date()}"/> </div> 
+		<div id="fechaHastaStyle"> <p>Fecha hasta</p> <calendar:datePicker name="fechaHastaNew" dateFormat="%d/%m/%Y" value="${fechaHastaLastValue }" defaultValue="${new Date() - 1}"/> </div> 
+		<g:if test="${clienteIdLastValue!=null}">
+			<div id="clienteStyle"> <p>Cliente</p> <g:select id="cliente" name="clienteId" from="${ar.com.campochico.Cliente.list()}" optionKey="id" required="" class="many-to-one" value="${clienteIdLastValue}"/> </div>
+		</g:if>
+		<g:else>
+			<div id="clienteStyle"> <p>Cliente</p> <g:select id="cliente" name="clienteId" from="${ar.com.campochico.Cliente.list()}" optionKey="id" required="" class="many-to-one"/> </div>	
+		</g:else>
 		<g:actionSubmit name="submitQuery" class="btn btn-success btn-sm" action="list" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
 	</g:form>
 	<table class="table table-striped table-hover ">
