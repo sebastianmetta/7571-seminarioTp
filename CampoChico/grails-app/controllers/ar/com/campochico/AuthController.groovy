@@ -76,6 +76,6 @@ class AuthController {
     }
 
     def unauthorized = {
-        render "You do not have permission to access this page."
+        render "Lo sentimos, no tiene permisos para acceder a esta página."
     }
 }

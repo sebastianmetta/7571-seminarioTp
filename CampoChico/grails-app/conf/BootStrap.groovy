@@ -1,4 +1,5 @@
 
+import ar.com.campochico.Role;
 import ar.com.campochico.User
 import ar.com.campochico.Cliente
 import ar.com.campochico.DiaVisitaCliente;
@@ -20,10 +21,50 @@ class BootStrap {
 	def init = { servletContext ->
 		log.info('Inicializando datos de la aplicación...')
 
+		//Roles
+		def adminRole = new Role(name: "Administrador")
+		adminRole.addToPermissions("*:*")
+		adminRole.save(flush:true, failOnError:true)
+		
+		def empleadoRole = new Role(name:"Empleado")
+		empleadoRole.addToPermissions("Cliente:*")
+		empleadoRole.addToPermissions("CompraProducto:*")
+		empleadoRole.addToPermissions("HojaDeRuta:*")
+		empleadoRole.addToPermissions("Producto:*")
+		empleadoRole.addToPermissions("Proveedor:*")
+		empleadoRole.addToPermissions("VentaProducto:*")
+		empleadoRole.addToPermissions("VisitaCliente:*")
+		empleadoRole.addToPermissions("Zona:*")
+		empleadoRole.save(flush:true, failOnError:true)
+		
+		def gerenteRole = new Role(name:"Gerente")
+		gerenteRole.addToPermissions("Cliente:*")
+		gerenteRole.addToPermissions("CompraProducto:*")
+		gerenteRole.addToPermissions("HojaDeRuta:*")
+		gerenteRole.addToPermissions("Producto:*")
+		gerenteRole.addToPermissions("Proveedor:*")
+		gerenteRole.addToPermissions("VentaProducto:*")
+		gerenteRole.addToPermissions("VisitaCliente:*")
+		gerenteRole.addToPermissions("Zona:*")
+		//Reportes
+		gerenteRole.addToPermissions("ResumenCuentaCliente:*")
+		gerenteRole.save(flush:true, failOnError:true)
+		
 		//Usuario administrador
-		def user = new User(username: "admin", passwordHash: new Sha256Hash("spinetta").toHex())
-		user.addToPermissions("*:*")
-		user.save()
+		def adminUser = new User(username: "admin", passwordHash: new Sha256Hash("admin").toHex())
+		adminUser.addToRoles(adminRole)
+		adminUser.save(flush:true, failOnError:true)
+		
+		//Usuarios empleados
+		def empleadoUser = new User(username: "empleado", passwordHash: new Sha256Hash("empleado").toHex())
+		empleadoUser.addToRoles(empleadoRole)
+		empleadoUser.save(flush:true, failOnError:true)
+		
+		//Usuarios gerentes
+		def gerenteUser = new User(username: "gerente", passwordHash: new Sha256Hash("gerente").toHex())
+		gerenteUser.addToRoles(gerenteRole)
+		gerenteUser.save(flush:true, failOnError:true)
+		
 		
 		if ((Environment.current == Environment.DEVELOPMENT) ||
 		(Environment.current == Environment.TEST)) {
