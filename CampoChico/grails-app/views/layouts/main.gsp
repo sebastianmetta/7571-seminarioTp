@@ -26,6 +26,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+				<shiro:user>
 				<ul class="nav navbar-nav">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -69,8 +70,14 @@
 						</ul>
 					</li>
 				</ul>
+				</shiro:user>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Cerrar sesión</a></li>
+					<shiro:user>
+						<li><g:link controller="auth" action="signOut">Cerrar sesion de <shiro:principal/> </g:link></li>
+					</shiro:user>
+					<shiro:notUser>
+						<li><g:link controller="auth" action="login">Iniciar sesion</g:link></li>
+					</shiro:notUser> 
 				</ul>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 
+import ar.com.campochico.User
 import ar.com.campochico.Cliente
 import ar.com.campochico.DiaVisitaCliente;
 import ar.com.campochico.Producto
@@ -8,6 +9,7 @@ import grails.util.Environment
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate
 
@@ -18,6 +20,11 @@ class BootStrap {
 	def init = { servletContext ->
 		log.info('Inicializando datos de la aplicación...')
 
+		//Usuario administrador
+		def user = new User(username: "admin", passwordHash: new Sha256Hash("spinetta").toHex())
+		user.addToPermissions("*:*")
+		user.save()
+		
 		if ((Environment.current == Environment.DEVELOPMENT) ||
 		(Environment.current == Environment.TEST)) {
 
