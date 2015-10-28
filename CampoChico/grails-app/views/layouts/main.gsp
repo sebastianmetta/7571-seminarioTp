@@ -71,6 +71,17 @@
 								</ul>
 						</li>
 					</shiro:hasPermission>
+					<shiro:hasPermission permission="User:*">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								Usuarios<span class="caret"></span>
+							</a>
+								<ul class="dropdown-menu" role="menu">
+										<li><a href="${createLink(uri: '/User')}">Crear usuario</a></li>
+										<li><a href="${createLink(uri: '/User/list')}">Listar usuarios</a></li>
+								</ul>
+						</li>
+					</shiro:hasPermission>
 				</ul>
 				</shiro:user>
 				<ul class="nav navbar-nav navbar-right">

@@ -1,12 +1,20 @@
 package ar.com.campochico
 
 class Role {
-    String name
+	public static String ROL_ADMINISTRADOR = "Administrador"
+	public static String ROL_EMPLEADO = "Empleado"
+	public static String ROL_GERENTE = "Gerente"
 
-    static hasMany = [ users: User, permissions: String ]
-    static belongsTo = User
+	String name
 
-    static constraints = {
-        name(nullable: false, blank: false, unique: true)
-    }
+	static hasMany = [ users: User, permissions: String ]
+	static belongsTo = User
+
+	static constraints = {
+		name(nullable: false, blank: false, unique: true)
+	}
+
+	String toString(){
+		return name
+	}
 }

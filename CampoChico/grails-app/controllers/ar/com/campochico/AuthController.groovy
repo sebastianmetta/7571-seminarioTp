@@ -76,6 +76,8 @@ class AuthController {
     }
 
     def unauthorized = {
-        render "Lo sentimos, no tiene permisos para acceder a esta página."
+        //render "Lo sentimos, no tiene permisos para acceder a esta página."
+		//redirect(uri: "/forbidden")
+		response.sendError 403
     }
 }
