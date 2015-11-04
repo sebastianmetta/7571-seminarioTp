@@ -28,14 +28,13 @@
 	
 	<div align=center>
 		<shiro:user>
-			<h2>Lo sentimos <shiro:principal/>:</h2>
-			<p>No tenes permiso para ver esta página.</p>
+			<h2>Estimado <shiro:principal/>:</h2>
 		</shiro:user>
 		<shiro:notUser>
 			<h2>Estimado invitado:</h2>
-			<p>No tenes permiso para ver esta página.</p>
 		</shiro:notUser>
-		<asset:image src="forbidden.png" />
+		<p>Lo sentimos pero no tenes permiso para ver esta página.</p>
+		<asset:image src="forbidden.jpg" />
 	</div>
 </body>
 </html>

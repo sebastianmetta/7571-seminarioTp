@@ -10,14 +10,16 @@ class CompraProducto {
 	Date fechaDeCompra
 	Producto producto
 	Proveedor proveedor
-	BigDecimal precioCompra
+	double precioUnitario
 	double cantidad
+	double total
 
 	static constraints = {
 		fechaDeCompra blank:false, nullable:false
 		producto blank:false, nullable:false
 		proveedor blank:false, nullable:false
-		precioCompra blank:false, nullable:false
+		precioUnitario blank:false, nullable:false
 		cantidad blank:false, nullable:false
+		total blank:false, nullable:false
 	}
 }

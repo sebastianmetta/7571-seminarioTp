@@ -33,7 +33,9 @@
 							Acciones<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="${createLink(uri: '/VisitaCliente')}">Visitas a clientes</a></li>
+							<!-- <li><a href="${createLink(uri: '/VisitaCliente')}">Visitas a clientes</a></li>-->
+							<li><a href="${createLink(uri: '/OperatoriaDiaria')}">Operatoria Diaria</a></li>
+							<li class="divider"></li>
 							<li><a href="${createLink(uri: '/HojaDeRuta')}">Hoja de ruta</a></li>
 							<li class="divider"></li>
 							<li><a href="${createLink(uri: '/CompraProducto')}">Compra de productos</a></li>
@@ -49,6 +51,7 @@
 							<li><a href="${createLink(uri: '/Cliente')}">Clientes</a></li>
 							<li><a href="${createLink(uri: '/Proveedor')}">Proveedores</a></li>
 							<li class="divider"></li>
+							<li><a href="${createLink(uri: '/Vendedor')}">Vendedores</a></li>
 							<li><a href="${createLink(uri: '/Zona')}">Zonas</a></li>
 						</ul>
 					</li>

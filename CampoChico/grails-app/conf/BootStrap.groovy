@@ -1,10 +1,12 @@
 
+import ar.com.campochico.CompraProducto;
 import ar.com.campochico.Role;
 import ar.com.campochico.User
 import ar.com.campochico.Cliente
 import ar.com.campochico.DiaVisitaCliente;
 import ar.com.campochico.Producto
 import ar.com.campochico.Proveedor
+import ar.com.campochico.Vendedor;
 import ar.com.campochico.Zona;
 import grails.util.Environment
 
@@ -21,6 +23,10 @@ class BootStrap {
 	def init = { servletContext ->
 		log.info('Inicializando datos de la aplicación...')
 
+		//Vendedores
+		def vendedor1 = new Vendedor(nombre:"Vendedor1", vehiculo:"Vehiculo1").save(flush:true)
+		def vendedor2 = new Vendedor(nombre:"Vendedor2", vehiculo:"Vehiculo2").save(flush:true)
+		
 		//Roles
 		def adminRole = new Role(name: Role.ROL_ADMINISTRADOR)
 		adminRole.addToPermissions("*:*")
@@ -35,6 +41,7 @@ class BootStrap {
 		empleadoRole.addToPermissions("VentaProducto:*")
 		empleadoRole.addToPermissions("VisitaCliente:*")
 		empleadoRole.addToPermissions("Zona:*")
+		empleadoRole.addToPermissions("OperatoriaDiaria:*")
 		empleadoRole.save(flush:true, failOnError:true)
 
 		def gerenteRole = new Role(name:Role.ROL_GERENTE)
@@ -46,6 +53,7 @@ class BootStrap {
 		gerenteRole.addToPermissions("VentaProducto:*")
 		gerenteRole.addToPermissions("VisitaCliente:*")
 		gerenteRole.addToPermissions("Zona:*")
+		gerenteRole.addToPermissions("OperatoriaDiaria:*")
 		//Reportes
 		gerenteRole.addToPermissions("ResumenCuentaCliente:*")
 		gerenteRole.save(flush:true, failOnError:true)
@@ -85,14 +93,14 @@ class BootStrap {
 			Cliente c10 = new Cliente(ordenDeVisita: 1, nombre: 'Cliente 10',direccion: 'Dirección cliente 10',contacto: 'Contacto cliente 10',telefono: '15-6987-4510', mail:'cliente10@mail.com').save()
 			Cliente c11 = new Cliente(ordenDeVisita: 2, nombre: 'Cliente 11',direccion: 'Dirección cliente 11',contacto: 'Contacto cliente 11').save()
 
-			new Proveedor(nombre: 'Rimasa', direccion: 'Dirección Rimasa', contacto: 'Contacto Rimasa').save()
-			new Proveedor(nombre: 'Beroch', direccion: 'Dirección Beroch', contacto: 'Contacto Beroch').save()
+			def proveRimasa = new Proveedor(nombre: 'Rimasa', direccion: 'Dirección Rimasa', contacto: 'Contacto Rimasa').save()
+			def proveBeroch = new Proveedor(nombre: 'Beroch', direccion: 'Dirección Beroch', contacto: 'Contacto Beroch').save()
 
-			new Producto(nombre: 'CAJ BCO 1', descripcion: 'Cajón huevo blanco nro 1').save()
-			new Producto(nombre: 'CAJ BCO 2', descripcion: 'Cajón huevo blanco nro 2').save()
-			new Producto(nombre: 'CAJ SUPER', descripcion: 'Cajón huevo súper').save()
-			new Producto(nombre: 'CAJ COLOR', descripcion: 'Cajón huevo color').save()
-			new Producto(nombre: 'MAPLE', descripcion: 'Maple').save()
+			def cajBco1 = new Producto(nombre: 'CAJ BCO 1', descripcion: 'Cajón huevo blanco nro 1').save()
+			def cajBco2 = new Producto(nombre: 'CAJ BCO 2', descripcion: 'Cajón huevo blanco nro 2').save()
+			def cajSuper = new Producto(nombre: 'CAJ SUPER', descripcion: 'Cajón huevo súper').save()
+			def cajColor = new Producto(nombre: 'CAJ COLOR', descripcion: 'Cajón huevo color').save()
+			def maple = new Producto(nombre: 'MAPLE', descripcion: 'Maple').save()
 
 			//Dias de visita y zonas
 			String lunes = new LocalDate().withDayOfWeek(DateTimeConstants.MONDAY).dayOfWeek().getAsText()
@@ -123,6 +131,14 @@ class BootStrap {
 			new Zona(nombre: 'Domingos',
 			diasVisita: [dDomingo].asList(),
 			clientes: [c10, c11].asList()).save();
+
+
+			//Compra de productos
+			def compraCajBco1 = new CompraProducto(fechaDeCompra: new Date(),producto: cajBco1, proveedor:proveRimasa,precioUnitario: 340, cantidad: 50, total: 17000).save()
+			def compraCajBco2= new CompraProducto(fechaDeCompra: new Date(),producto: cajBco2, proveedor:proveBeroch,precioUnitario: 320, cantidad: 30, total: 9600).save()
+			def compraCajSuper= new CompraProducto(fechaDeCompra: new Date(),producto: cajSuper, proveedor:proveRimasa,precioUnitario: 400, cantidad: 15, total: 6000).save()
+			def compraCajColor= new CompraProducto(fechaDeCompra: new Date(),producto: cajColor, proveedor:proveBeroch,precioUnitario: 360, cantidad: 20, total: 7200).save()
+			def compraMaple= new CompraProducto(fechaDeCompra: new Date(),producto: maple, proveedor:proveBeroch,precioUnitario: 28, cantidad: 1, total: 28).save()
 
 		}
 	}
