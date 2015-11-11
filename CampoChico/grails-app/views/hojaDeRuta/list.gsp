@@ -7,7 +7,8 @@
 </head>
 <body>
 	<div>
-		<h1>Hoja de ruta zona: ${zoneName}</h1>
+		<h2>Hoja de ruta para la zona: ${zoneName}</h2>
+		<p class="text-primary">Vendedor: ${vendedorName}</p>
 		<div style="display: inline-block; text-align: right; width: 100%">
 			<div class="btn-group">
 		      <a aria-expanded="false" href="#" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -39,7 +40,7 @@
 				<g:sortableColumn property="contacto"
 					title="${message(code: 'cliente.contacto.label', default: 'Contacto')}" />
 				<g:sortableColumn property="mail"
-					title="${message(code: 'cliente.contacto.mail', default: 'Mail')}" />
+					title="${message(code: 'cliente.mail.label', default: 'Mail')}" />
 				<g:sortableColumn property="visita" title="Visita" />
 			</tr>
 		</thead>

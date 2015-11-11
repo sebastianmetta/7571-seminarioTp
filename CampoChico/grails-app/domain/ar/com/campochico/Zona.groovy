@@ -12,14 +12,16 @@ class Zona {
 	String nombre
 	List diasVisita
 	List clientes
+	Vendedor vendedor
 	
 	static hasMany = [
 		diasVisita: DiaVisitaCliente,
 		clientes: Cliente
 	]
-
+	
 	static constraints = {
 		nombre blank:false, nullable:false
+		vendedor blank:false, nullable:false
 	}
 
 	@Override

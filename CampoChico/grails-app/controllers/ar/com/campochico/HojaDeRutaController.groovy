@@ -31,10 +31,12 @@ class HojaDeRutaController {
 			zonaService.exportClientsListByDateToOutputStream(response, localDate, params.exportFormat, params.exportExtension)
 		}
 		else {
-			[zoneName:zonaService.zoneName(localDate),
+			[	
+				zoneName:zonaService.zoneName(localDate),
 				clientsList: zonaService.zoneClients(localDate),
 				clientsVisitsList: visitaClienteService.getClientVisitsByDate(localDate.toDate()),
-				zoneDate: localDate.toDate()
+				zoneDate: localDate.toDate(),
+				vendedorName: zonaService.vendedorName(localDate)
 			]
 		}
 

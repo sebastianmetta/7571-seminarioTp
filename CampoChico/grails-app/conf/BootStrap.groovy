@@ -121,16 +121,20 @@ class BootStrap {
 
 			new Zona(nombre: 'Lunes y Jueves',
 			diasVisita: [dLunes, dJueves].asList(),
-			clientes: [c0, c1, c2].asList()).save();
+			clientes: [c0, c1, c2].asList(),
+			vendedor: vendedor1).save();
 			new Zona(nombre: 'Martes y Viernes',
 			diasVisita: [dMartes, dViernes].asList(),
-			clientes: [c3, c4, c5].asList()).save();
+			clientes: [c3, c4, c5].asList(),
+			vendedor: vendedor1).save();
 			new Zona(nombre: 'Miércoles y Sábados',
 			diasVisita: [dMiercoles, dSabado].asList(),
-			clientes: [c6, c7, c8, c9].asList()).save();
+			clientes: [c6, c7, c8, c9].asList(),
+			vendedor: vendedor2).save();
 			new Zona(nombre: 'Domingos',
 			diasVisita: [dDomingo].asList(),
-			clientes: [c10, c11].asList()).save();
+			clientes: [c10, c11].asList(),
+			vendedor: vendedor2).save();
 
 
 			//Compra de productos
