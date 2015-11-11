@@ -63,6 +63,17 @@
 				</li>
 			</g:if>
 
+			<g:if test="${operatoriaDiariaInstance?.maplesPerdida}">
+				<li class="fieldcontain">
+					<span id="operatoriaDiaria-label" class="col-lg-2 control-label">
+						<g:message code="operatoriaDiaria.maplesPerdida.label" default="Maples Pérdida" />
+					</span> 
+					<span class="property-value" aria-labelledby="maplesPerdida-label">
+						<g:formatNumber number="${operatoriaDiariaInstance.maplesPerdida}" type="number" maxFractionDigits="2" />
+					</span>
+				</li>
+			</g:if>
+
 			<g:if test="${operatoriaDiariaInstance?.observaciones}">
 				<li class="fieldcontain"><span id="observaciones-label"
 					class="col-lg-2 control-label"><g:message

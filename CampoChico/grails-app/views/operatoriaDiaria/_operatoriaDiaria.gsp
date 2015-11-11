@@ -41,11 +41,19 @@
 	<g:textField name="dineroOtorgado" value="${fieldValue(bean: operatoriaDiariaInstance, field: 'dineroOtorgado')}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: visitaClienteInstance, field: 'observaciones', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: operatoriaDiariaInstance, field: 'maplesPerdida', 'error')} required">
+	<label for="maplesPerdida" class="col-lg-2 control-label">
+		<g:message code="operatoriaDiaria.maplesPerdida.label" default="Maples Pérdida" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="maplesPerdida" value="${fieldValue(bean: operatoriaDiariaInstance, field: 'maplesPerdida')}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: operatoriaDiariaInstance, field: 'observaciones', 'error')} ">
 	<label for="observaciones" class="col-lg-2 control-label">
 		<g:message code="visitaCliente.observaciones.label" default="Observaciones" />
 	</label>
-	<g:textField name="observaciones" value="${visitaClienteInstance?.observaciones}"/>
+	<g:textField name="observaciones" value="${operatoriaDiariaInstance?.observaciones}"/>
 </div>
 
 <div class="nav" >

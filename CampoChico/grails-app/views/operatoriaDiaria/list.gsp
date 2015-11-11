@@ -38,6 +38,9 @@
 					<g:sortableColumn property="dineroOtorgado"
 						title="${message(code: 'operatoriaDiaria.dineroOtorgado.label', default: 'Dinero Otorgado')}" />
 
+					<g:sortableColumn property="maplesPerdida"
+						title="${message(code: 'operatoriaDiaria.maplesPerdida.label', default: 'Maples Pérdida')}" />
+
 					<g:sortableColumn property="observaciones"
 						title="${message(code: 'operatoriaDiaria.observaciones.label', default: 'Observaciones')}" />
 
@@ -62,7 +65,11 @@
 						</td>
 						
 						<td>
-							${fieldValue(bean: visitaClienteInstance, field: "observaciones")}
+							${fieldValue(bean: operatoriaDiariaInstance, field: "maplesPerdida")}
+						</td>
+						
+						<td>
+							${fieldValue(bean: operatoriaDiariaInstance, field: "observaciones")}
 						</td>
 					</tr>
 				</g:each>

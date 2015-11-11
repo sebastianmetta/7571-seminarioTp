@@ -10,6 +10,7 @@ class OperatoriaDiaria {
 	Vendedor vendedor
 	List productosOtorgados = new ArrayList()
 	double dineroOtorgado
+	double maplesPerdida
 	String observaciones
 
 	static hasMany = [productosOtorgados: ProductoOtorgado]
@@ -20,6 +21,7 @@ class OperatoriaDiaria {
 		fecha blank:false, nullable:false
 		vendedor blank:false, nullable:false
 		dineroOtorgado blank:false, nullable:false
+		maplesPerdida blank:false, nullable:false
 		observaciones nullable:true
 	}
 }
