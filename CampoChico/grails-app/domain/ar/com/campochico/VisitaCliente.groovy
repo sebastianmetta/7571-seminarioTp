@@ -27,4 +27,16 @@ class VisitaCliente {
 	public String toString() {
 		return "Fecha $fecha - Cliente: $cliente";
 	}
+	
+	/**
+	 * devuelve una lista de VentaProducto correspondientes al proveedor.
+	 * @param proveedor
+	 * @return
+	 */
+	def getProductosVendidosByProveedor(Proveedor proveedor) {
+		List productos = VentaProducto.withCriteria {
+			eq('proveedor', proveedor)
+		}
+		return productos
+	}
 }

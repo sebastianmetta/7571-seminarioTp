@@ -69,9 +69,10 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 								Reportes<span class="caret"></span>
 							</a>
-								<ul class="dropdown-menu" role="menu">
-										<li><a href="${createLink(uri: '/ResumenCuentaCliente')}">Resumenes de cuentas</a></li>
-								</ul>
+							<ul class="dropdown-menu" role="menu">
+									<li><a href="${createLink(uri: '/ResumenCuentaCliente')}">Resumenes de cuentas</a></li>
+								<li><a href="${createLink(uri: '/TotalesDiarios')}">Totales Diarios</a></li>
+							</ul>
 						</li>
 					</shiro:hasPermission>
 					<shiro:hasPermission permission="User:*">

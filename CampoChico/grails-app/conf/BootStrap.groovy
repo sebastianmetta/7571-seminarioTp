@@ -56,6 +56,7 @@ class BootStrap {
 		gerenteRole.addToPermissions("OperatoriaDiaria:*")
 		//Reportes
 		gerenteRole.addToPermissions("ResumenCuentaCliente:*")
+		gerenteRole.addToPermissions("TotalesDiarios:*")
 		gerenteRole.save(flush:true, failOnError:true)
 
 		//Usuario administrador

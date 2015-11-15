@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
-  <g:set var="entityName" value="${message(code: 'contact.label', default: 'VisitaCliente')}" />
+  <g:set var="entityName" value="${message(code: 'visitaCliente.label', default: 'VisitaCliente')}" />
   <title><g:message code="default.create.label" args="[entityName]" /></title>
   </head>
   <body>

@@ -28,4 +28,5 @@ class VentaProducto {
 		precioVentaUnitario blank:false, nullable:false
 	}
 	
+	
 }
