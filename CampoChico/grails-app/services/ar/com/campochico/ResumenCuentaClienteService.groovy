@@ -59,9 +59,9 @@ class ResumenCuentaClienteService {
 			resumenDto.setSaldo(saldoAnterior)
 			resumen.add(resumenDto);
 		}
-		for (ResumenCuentaClienteDto eachDto : resumen) {
-			println eachDto.toString()
-		}
+//		for (ResumenCuentaClienteDto eachDto : resumen) {
+//			println eachDto.toString()
+//		}
 		return resumen
 	}
 

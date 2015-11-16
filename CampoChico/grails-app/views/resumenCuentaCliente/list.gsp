@@ -28,12 +28,6 @@
 	       </div>
 	    </div>
 	</div>
-	<g:if test="${resumenList.isEmpty() && clienteIdLastValue!=null}">
-		<div class="alert alert-dismissible alert-warning">
-		  	<button type="button" class="close" data-dismiss="alert">×</button>
-			No existen resultados en su consulta.		  
-		</div>
-	</g:if>
 	<g:form action="list" method="get" >
 		<div id="fechaDesdeStyle"> <p>Fecha desde</p> <calendar:datePicker name="fechaDesdeNew" dateFormat="%d/%m/%Y" value="${fechaDesdeLastValue }" defaultValue="${new Date()}"/> </div> 
 		<div id="fechaHastaStyle"> <p>Fecha hasta</p> <calendar:datePicker name="fechaHastaNew" dateFormat="%d/%m/%Y" value="${fechaHastaLastValue }" defaultValue="${new Date() - 1}"/> </div> 
@@ -45,33 +39,41 @@
 		</g:else>
 		<g:actionSubmit name="submitQuery" class="btn btn-success btn-sm" action="list" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
 	</g:form>
-	<table class="table table-striped table-hover ">
-		<thead>
-			<tr>
-				<g:sortableColumn property="nombre" 
-					title="${message(code: 'resumenCuenta.fecha.label', default: 'Fecha')}" />
-				<g:sortableColumn property="direccion" 
-					title="${message(code: 'resumenCuenta.descripcion.label', default: 'Descripción')}" />
-				<g:sortableColumn property="telefono"
-					title="${message(code: 'resumenCuenta.debe.label', default: 'Debe')}" />
-				<g:sortableColumn property="contacto"
-					title="${message(code: 'resumenCuenta.haber.label', default: 'Haber')}" />
-				<g:sortableColumn property="mail"
-					title="${message(code: 'resumenCuenta.saldo.label', default: 'Saldo')}" />
-			</tr>
-		</thead>
-		<tbody>
-			<g:each in="${resumenList}" var="resumenInstance">
+	<g:if test="${resumenList.isEmpty() && clienteIdLastValue!=null}">
+		<div class="alert alert-dismissible alert-warning">
+		  	<button type="button" class="close" data-dismiss="alert">×</button>
+			No existen resultados en su consulta.		  
+		</div>
+	</g:if>
+	<g:else>
+		<table class="table table-striped table-hover ">
+			<thead>
 				<tr>
-					<td>${fieldValue(bean: resumenInstance, field: "fecha")}</td>
-					<td>${fieldValue(bean: resumenInstance, field: "descripcion")}</td>
-					<td>${fieldValue(bean: resumenInstance, field: "saldoDeudor")}</td>
-					<td>${fieldValue(bean: resumenInstance, field: "saldoAcreedor")}</td>
-					<td>${fieldValue(bean: resumenInstance, field: "saldo")}</td>
+					<g:sortableColumn property="nombre" 
+						title="${message(code: 'resumenCuenta.fecha.label', default: 'Fecha')}" />
+					<g:sortableColumn property="direccion" 
+						title="${message(code: 'resumenCuenta.descripcion.label', default: 'Descripción')}" />
+					<g:sortableColumn property="telefono"
+						title="${message(code: 'resumenCuenta.debe.label', default: 'Debe')}" />
+					<g:sortableColumn property="contacto"
+						title="${message(code: 'resumenCuenta.haber.label', default: 'Haber')}" />
+					<g:sortableColumn property="mail"
+						title="${message(code: 'resumenCuenta.saldo.label', default: 'Saldo')}" />
 				</tr>
-			</g:each>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<g:each in="${resumenList}" var="resumenInstance">
+					<tr>
+						<td>${fieldValue(bean: resumenInstance, field: "fecha")}</td>
+						<td>${fieldValue(bean: resumenInstance, field: "descripcion")}</td>
+						<td>${fieldValue(bean: resumenInstance, field: "saldoDeudor")}</td>
+						<td>${fieldValue(bean: resumenInstance, field: "saldoAcreedor")}</td>
+						<td>${fieldValue(bean: resumenInstance, field: "saldo")}</td>
+					</tr>
+				</g:each>
+			</tbody>
+		</table>
+	</g:else>
 	
 </body>
 </html>

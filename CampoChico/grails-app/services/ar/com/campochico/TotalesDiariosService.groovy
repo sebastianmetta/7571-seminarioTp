@@ -40,7 +40,9 @@ class TotalesDiariosService {
 				
 			}
 
-			totalesVentas.put(eachProveedor, totalesDiariosProductos)
+			if (totalesDiariosProductos.size()>0) {
+				totalesVentas.put(eachProveedor, totalesDiariosProductos)
+			}
 		}
 		return totalesVentas
 	}

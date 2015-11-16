@@ -27,6 +27,7 @@ class ResumenCuentaClienteController {
 		}
 		
 		if (params?.exportFormat && params?.exportFormat != "html") {
+			//TODO: Revisar.
 			resumenCuentaClienteService.exportResumenCuentaClienteToOutputStream(null, null, fechaDesde, fechaHasta, "", "")(response, fechaHasta, params.exportFormat, params.exportExtension)
 		}
 		else {
