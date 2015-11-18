@@ -11,8 +11,7 @@ class TotalesDiariosService {
 	/**
 	 * Devuelve un mapa con el siguiente formato:</br>
 	 * <b>Clave:</b> Proveedor </br>
-	 * <b>Valor:</b> Mapa que contiene como clave <b>Producto<b> 
-	 * y como valor una listade TotalDiarioProducto. </br>  
+	 * <b>Valor:</b> Lista de TotalDiarioProducto. </br>  
 	 * <u>Por ejemplo:</u>
 	 * 
 	 * <li>Beroch, [(Huevo Super, 54, 19500, 1250),(Huevo 1, 42, 13500, 720)]</li>

@@ -96,6 +96,7 @@ class BootStrap {
 
 			def proveRimasa = new Proveedor(nombre: 'Rimasa', direccion: 'Dirección Rimasa', contacto: 'Contacto Rimasa').save()
 			def proveBeroch = new Proveedor(nombre: 'Beroch', direccion: 'Dirección Beroch', contacto: 'Contacto Beroch').save()
+			def proveOtros = new Proveedor(nombre: 'Otros', direccion: 'No corresponde', contacto: 'No corresponde').save()
 
 			def cajBco1 = new Producto(nombre: 'CAJ BCO 1', descripcion: 'Cajón huevo blanco nro 1').save()
 			def cajBco2 = new Producto(nombre: 'CAJ BCO 2', descripcion: 'Cajón huevo blanco nro 2').save()

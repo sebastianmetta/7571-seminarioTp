@@ -7,13 +7,19 @@ import grails.transaction.Transactional
 class OperatoriaDiariaService {
 
 	/**
-	 * Devuelve todas las Visitas a clientes para la fecha indicada
+	 * Devuelve una lista de las Visitas a clientes para la fecha indicada o una instancia vacia si no hay datos. 
 	 */
-	def getClientVisitsByDate(Date fecha) {
-		List visitasCliente = VisitaCliente.withCriteria {
+	def getOperatoriaDiariaByDate(Date fecha) {
+		List toReturn = OperatoriaDiaria.withCriteria {
 			eq('fecha', fecha.clearTime())
 		}
-		return visitasCliente
+		
+		if (toReturn==null) {
+			//TODO: Averiguar como hacer un metodo estatico o cómo conviene reemplazarlo.
+			toReturn = new OperatoriaDiaria()
+			toReturn.setEmtpyValues()
+		}
+		return toReturn
 	}
 
 }

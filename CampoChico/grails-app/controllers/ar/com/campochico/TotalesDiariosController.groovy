@@ -10,7 +10,8 @@ class TotalesDiariosController {
 
 	// Grails inyecta los servicios por convencion de nombres.
 	def totalesDiariosService
-
+	def operatoriaDiariaService
+	
 	def index() {
 		redirect(action: "list", params: params)
 	}
@@ -27,6 +28,7 @@ class TotalesDiariosController {
 		[	
 			fechaLastValue: localDate.toDate(),
 			totalesDiarios: totalesDiariosService.obtenerTotalesVentas(localDate.toDate()),
+			operatoriaDiariaList: operatoriaDiariaService.getOperatoriaDiariaByDate(localDate.toDate())
 		]
 	}
 }

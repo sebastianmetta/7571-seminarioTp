@@ -29,7 +29,33 @@
 	</g:if>
 	
 	<div class="container">
-        <div id="divResultados" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div id="divOperatoriaDiaria" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<p class="text-center text-primary">Datos operatoria diaria</p>
+		    <table class="table table-striped table-hover ">
+				<thead>
+					<tr>
+						<th>Fecha</th>
+						<th>Vendedor</th>
+						<th>$ Otorgado</th>
+						<th>Maples Pérdida</th>
+						<th>Observaciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<g:each in="${operatoriaDiariaList}" var="operatoriaDiariaItem">
+						<tr>
+							<td>${fieldValue(bean: operatoriaDiariaItem, field: "fecha")}</td>
+							<td>${fieldValue(bean: operatoriaDiariaItem, field: "vendedor")}</td>
+							<td>${fieldValue(bean: operatoriaDiariaItem, field: "dineroOtorgado")}</td>
+							<td>${fieldValue(bean: operatoriaDiariaItem, field: "maplesPerdida")}</td>
+							<td>${fieldValue(bean: operatoriaDiariaItem, field: "observaciones")}</td>
+						</tr>
+					</g:each>
+				</tbody>
+			</table>
+		    
+		</div>
+        <div id="divProductos" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 		<ul>
 			<g:each var="totalesProveedor" in="${totalesDiarios}">
 	    		<p class="text-center text-primary">Totales diarios para el proveedor <b>${totalesProveedor.key}</b></p>

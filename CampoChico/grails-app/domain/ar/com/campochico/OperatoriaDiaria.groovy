@@ -24,4 +24,14 @@ class OperatoriaDiaria {
 		maplesPerdida blank:false, nullable:false
 		observaciones nullable:true
 	}
+	
+	def setEmtpyValues() {
+		this.fecha = new Date()
+		this.vendedor = null
+		this.dineroOtorgado=0
+		this.maplesPerdida=0
+		//TODO: Ver como obtener mensajes i18n
+		//this.observaciones=message(code: "operatoriaDiaria.not.foundByDate")
+		this.observaciones="No se ha creado la operatoria diaria de hoy"
+	}
 }
