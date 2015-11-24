@@ -64,7 +64,7 @@
 			<tbody>
 				<g:each in="${resumenList}" var="resumenInstance">
 					<tr>
-						<td>${fieldValue(bean: resumenInstance, field: "fecha")}</td>
+						<td><g:formatDate format="dd-MM-yyyy" date="${resumenInstance.fecha}"/></td>
 						<td>${fieldValue(bean: resumenInstance, field: "descripcion")}</td>
 						<td>${fieldValue(bean: resumenInstance, field: "saldoDeudor")}</td>
 						<td>${fieldValue(bean: resumenInstance, field: "saldoAcreedor")}</td>

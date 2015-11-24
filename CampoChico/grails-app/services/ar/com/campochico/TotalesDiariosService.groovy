@@ -29,14 +29,17 @@ class TotalesDiariosService {
 
 			List<VisitaCliente> visitasClientes = visitaClienteService.getClientVisitsByDate(fecha)
 
+			
 			for (VisitaCliente eachVisita : visitasClientes){
 				List productosVendidos = eachVisita.getProductosVendidosByProveedor(eachProveedor)
 
 				for(VentaProducto eachVenta : productosVendidos) {
 					TotalDiarioProducto totalDiarioProducto = getOrAddProducto(eachVenta.getProducto(),totalesDiariosProductos)
 					totalDiarioProducto.acumularVenta(eachVenta)
+					totalDiarioProducto.setCostoUnitario(getCostoProductoProveedor(totalDiarioProducto.producto, eachProveedor))
+					totalDiarioProducto.calcularGanancia()
 				}
-				
+
 			}
 
 			if (totalesDiariosProductos.size()>0) {
@@ -63,6 +66,25 @@ class TotalesDiariosService {
 		toReturn.setProducto(producto)
 		totalesDiariosProductos.add(toReturn)
 		return toReturn
+	}
+	
+	/**
+	 * Devuelve el costo del producto asociado al proveedor
+	 * @param producto
+	 * @param proveedor
+	 * @return
+	 */
+	private Double getCostoProductoProveedor(Producto producto, Proveedor proveedor) {
+		List<CompraProducto> compraProductoList = CompraProducto.withCriteria {
+			eq('producto', producto)
+			eq('proveedor', proveedor)
+			order('fechaDeCompra','desc')
+		}
+		if (compraProductoList!=null && !compraProductoList.isEmpty()) {			
+			return compraProductoList.first().precioUnitario
+		} else {
+			return 0
+		}
 	}
 }
 

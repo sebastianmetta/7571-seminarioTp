@@ -28,6 +28,7 @@
 		</div>
 	</g:if>
 	
+	<g:if test="${totalesDiarios!=null && !totalesDiarios.isEmpty()}">
 	<div class="container">
 		<div id="divOperatoriaDiaria" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<p class="text-center text-primary">Datos operatoria diaria</p>
@@ -36,7 +37,7 @@
 					<tr>
 						<th>Fecha</th>
 						<th>Vendedor</th>
-						<th>$ Otorgado</th>
+						<th>Dinero Otorgado</th>
 						<th>Maples Pérdida</th>
 						<th>Observaciones</th>
 					</tr>
@@ -44,7 +45,7 @@
 				<tbody>
 					<g:each in="${operatoriaDiariaList}" var="operatoriaDiariaItem">
 						<tr>
-							<td>${fieldValue(bean: operatoriaDiariaItem, field: "fecha")}</td>
+							<td><g:formatDate format="dd-MM-yyyy" date="${operatoriaDiariaItem.fecha}"/></td>
 							<td>${fieldValue(bean: operatoriaDiariaItem, field: "vendedor")}</td>
 							<td>${fieldValue(bean: operatoriaDiariaItem, field: "dineroOtorgado")}</td>
 							<td>${fieldValue(bean: operatoriaDiariaItem, field: "maplesPerdida")}</td>
@@ -65,6 +66,7 @@
 							<th>Producto</th>
 							<th>Cantidad</th>
 							<th>Total Venta</th>
+							<th>Costo Unitario</th>
 							<th>Ganancia</th>
 						</tr>
 					</thead>
@@ -74,14 +76,24 @@
 								<td>${fieldValue(bean: totalesPorProducto, field: "producto")}</td>
 								<td>${fieldValue(bean: totalesPorProducto, field: "cantidadTotal")}</td>
 								<td>${fieldValue(bean: totalesPorProducto, field: "totalVenta")}</td>
+								<td>${fieldValue(bean: totalesPorProducto, field: "costoUnitario")}</td>
 								<td>${fieldValue(bean: totalesPorProducto, field: "ganancia")}</td>
 							</tr>
 						</g:each>
+						<!-- TOTALES -->
+						<tr>
+							<td><b>TOTAL</b></td>
+							<td><b>${totalesProveedor.value.sum { it.cantidadTotal } }</b></td>
+							<td><b>${totalesProveedor.value.sum { it.totalVenta } }</b></td>
+							<td><b>-</b></td>
+							<td><b>${totalesProveedor.value.sum { it.ganancia } }</b></td>
+						</tr>
 					</tbody>
 				</table>
 		    </g:each>
 		</ul>
 	</div>
 	</div>
+	</g:if>
 </body>
 </html>

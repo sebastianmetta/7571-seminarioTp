@@ -10,24 +10,27 @@ class TotalDiarioProducto {
 	Producto producto
 	double cantidadTotal
 	double totalVenta
+	double costoUnitario
 	double ganancia
 	
     static constraints = {
 		producto blank:false, nullable:false
 		cantidadTotal blank:false, nullable:false
 		totalVenta blank:false, nullable:false
+		costoUnitario blank:false, nullable:false
 		ganancia blank:false, nullable:false
     }
 	
 	def reset()  {
 		cantidadTotal=0
 		totalVenta=0
+		costoUnitario=0
 		ganancia=0
 	}
 	
 	@Override
 	public String toString() {
-		return "Producto:" + producto + ", CantTotal:" + cantidadTotal+ ", TotVenta:" + totalVenta + ", Gcia:" + ganancia
+		return "Producto:" + producto + ", CantTotal:" + cantidadTotal+ ", TotVenta:" + totalVenta + ", CostoUnitario:" + costoUnitario + ", Gcia:" + ganancia
 	}
 	
 	def acumularVenta(VentaProducto ventaProducto) {
@@ -35,6 +38,10 @@ class TotalDiarioProducto {
 			this.cantidadTotal+=ventaProducto.cantidad
 			this.totalVenta+=(ventaProducto.cantidad * ventaProducto.precioVentaUnitario)
 		}
+	}
+	
+	def calcularGanancia() {
+		this.ganancia=(this.totalVenta) - (this.cantidadTotal * this.costoUnitario)
 	}
 	
 	@Override
