@@ -1,6 +1,7 @@
 package ar.com.campochico
 
 import java.util.List;
+import org.joda.time.LocalDate
 
 import groovy.transform.ToString;
 
@@ -34,4 +35,6 @@ class OperatoriaDiaria {
 		//this.observaciones=message(code: "operatoriaDiaria.not.foundByDate")
 		this.observaciones="No se ha creado la operatoria diaria de hoy"
 	}
+	
+
 }

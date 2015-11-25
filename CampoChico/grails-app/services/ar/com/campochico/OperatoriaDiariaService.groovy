@@ -22,4 +22,23 @@ class OperatoriaDiariaService {
 		return toReturn
 	}
 
+	/**
+	 * @return una lista de vendedores para los cuales en el dia actual no se cargó la operatoria diaria. 
+	 * Si no hay cargas pendientes se devuelve una lista vacia. 
+	 */
+	def getTodayPendingLoad() {
+		def toReturn = new ArrayList<Vendedor>()
+		def now = new Date()
+		now.clearTime()
+		for (Vendedor eachVendedor : Vendedor.list()) {
+			def operatoriaVendedor = OperatoriaDiaria.withCriteria { 
+				between('fecha', now, now+1)
+				eq('vendedor', eachVendedor)
+     		}
+			if (operatoriaVendedor == null || operatoriaVendedor.empty) {				
+				toReturn.add(eachVendedor.clone())
+			}
+		}
+		return toReturn
+	}
 }

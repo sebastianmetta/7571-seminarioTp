@@ -1,10 +1,13 @@
 package ar.com.campochico
 
+import groovy.transform.AutoClone;
+
 /**
  * Un Vendedor es una persona responsable de un reparto.
  * @author sebastian
  *
  */
+@AutoClone
 class Vendedor {
 	String nombre
 	String vehiculo
@@ -16,6 +19,6 @@ class Vendedor {
 	
 	@Override
 	public String toString() {
-		return "[" + nombre + "," + vehiculo + "]";
+		return nombre;
 	}
 }

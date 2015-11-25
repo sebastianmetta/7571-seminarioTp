@@ -13,6 +13,10 @@
 				  ${flash.message}
 				</div>
 			</g:if>
+			<shiro:notUser>
+				<h2 class="text-center">Bienvenido al sistema de administración de CAMPO CHICO.</h2>
+				<p class="text-center">Para comenzar, por favor iniciá sesión.</p>
+			</shiro:notUser>
             <div class="panel panel-primary" >
 				<div class="panel-heading">
 				    <div class="panel-title">Iniciar Sesión</div>
