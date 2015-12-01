@@ -18,4 +18,8 @@ class Proveedor {
 	public String toString() {
 		return nombre;
 	}
+	
+	def enviarPedidoProducto(Producto producto, double cantidad, Date fechaRequerida) {
+		//TODO: A implementar a futuro.
+	}
 }

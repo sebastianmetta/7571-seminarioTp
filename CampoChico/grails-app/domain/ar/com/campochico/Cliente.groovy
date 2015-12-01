@@ -22,4 +22,22 @@ class Cliente {
 	public String toString() {
 		return "$nombre";
 	}
+	
+	def enviarRecordatorioDeuda() {
+		//TODO: Utilizando la dirección de correo, se envía mail al 
+		//cliente recordandole que tiene una deuda.
+	}
+	
+	def intercambiarOrdenVisita(Cliente other) {
+		if (other!=null) {
+			int aux = this.getOrdenDeVisita()
+			this.setOrdenDeVisita(other.getOrdenDeVisita())
+			other.setOrdenDeVisita(aux)
+		}
+	}
+	
+	def enviarAvisoNoVisita() {
+		//TODO: Utilizando la dirección de correo, se envía mail al
+		//cliente avisandole que no se le visitará en el día actual.
+	}
 }

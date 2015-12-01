@@ -36,5 +36,8 @@ class OperatoriaDiaria {
 		this.observaciones="No se ha creado la operatoria diaria de hoy"
 	}
 	
+	def registrarPerdida(){
+		//TODO: Se registra la perdida de productos.
+	}
 
 }

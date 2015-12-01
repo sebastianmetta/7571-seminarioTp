@@ -21,4 +21,8 @@ class Vendedor {
 	public String toString() {
 		return nombre;
 	}
+	
+	def visitarCliente() {
+		//TODO: generar VisitaCliente
+	}
 }

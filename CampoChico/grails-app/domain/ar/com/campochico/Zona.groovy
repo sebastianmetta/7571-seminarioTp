@@ -29,4 +29,10 @@ class Zona {
 		return "Zona [nombre=" + nombre + "]";
 	}
 	
+	def enviarAvisoNoVisitaClientes(){
+		for (Cliente eachCliente: clientes) {
+			eachCliente.enviarAvisoNoVisita()
+		}
+	}
+	
 }
