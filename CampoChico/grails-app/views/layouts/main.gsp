@@ -39,6 +39,9 @@
 							<li class="divider"></li>
 							<li><a href="${createLink(uri: '/Compra')}">Compras</a></li>
 							<li><a href="${createLink(uri: '/Venta')}">Ventas</a></li>
+							<li class="divider"></li>
+							<li><a href="${createLink(uri: '/AvisoNoVisita')}">Aviso no visita</a></li>
+							<li><a href="${createLink(uri: '/AvisoDeuda')}">Aviso de deuda</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">

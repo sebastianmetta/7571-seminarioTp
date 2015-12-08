@@ -1,8 +1,5 @@
 package ar.com.campochico
 
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate
-
 /**
  * Representa una Zona de ventas a clientes 
  * @author sebastian
@@ -20,7 +17,7 @@ class ZonaVenta {
 	]
 	
 	static constraints = {
-		nombre blank:false, nullable:false
+		nombre blank:false, nullable:false, unique:true
 		vendedor blank:false, nullable:false
 	}
 
@@ -29,9 +26,9 @@ class ZonaVenta {
 		return "Zona [nombre=" + nombre + "]";
 	}
 	
-	def enviarAvisoNoVisitaClientes(){
+	def enviarAvisoNoVisitaClientes(String contenidoMensaje){
 		for (Cliente eachCliente: clientes) {
-			eachCliente.enviarAvisoNoVisita()
+			eachCliente.enviarAvisoNoVisita(contenidoMensaje)
 		}
 	}
 	

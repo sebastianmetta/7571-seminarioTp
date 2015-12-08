@@ -33,6 +33,7 @@ class BootStrap {
 		adminRole.save(flush:true, failOnError:true)
 
 		def empleadoRole = new Role(name:Role.ROL_EMPLEADO)
+		empleadoRole.addToPermissions("Index:*")
 		empleadoRole.addToPermissions("Cliente:*")
 		empleadoRole.addToPermissions("CompraProducto:*")
 		empleadoRole.addToPermissions("HojaDeRuta:*")
@@ -42,9 +43,12 @@ class BootStrap {
 		empleadoRole.addToPermissions("VisitaCliente:*")
 		empleadoRole.addToPermissions("Zona:*")
 		empleadoRole.addToPermissions("OperatoriaDiaria:*")
+		empleadoRole.addToPermissions("AvisoNoVisita:*")
+		empleadoRole.addToPermissions("AvisoDeuda:*")
 		empleadoRole.save(flush:true, failOnError:true)
 
 		def gerenteRole = new Role(name:Role.ROL_GERENTE)
+		gerenteRole.addToPermissions("Index:*")
 		gerenteRole.addToPermissions("Cliente:*")
 		gerenteRole.addToPermissions("CompraProducto:*")
 		gerenteRole.addToPermissions("HojaDeRuta:*")
@@ -54,6 +58,8 @@ class BootStrap {
 		gerenteRole.addToPermissions("VisitaCliente:*")
 		gerenteRole.addToPermissions("Zona:*")
 		gerenteRole.addToPermissions("OperatoriaDiaria:*")
+		gerenteRole.addToPermissions("AvisoNoVisita:*")
+		gerenteRole.addToPermissions("AvisoDeuda:*")
 		//Reportes
 		gerenteRole.addToPermissions("ResumenCuentaCliente:*")
 		gerenteRole.addToPermissions("TotalesDiarios:*")

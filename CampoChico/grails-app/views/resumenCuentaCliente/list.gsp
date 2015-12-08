@@ -39,6 +39,11 @@
 		</g:else>
 		<g:actionSubmit name="submitQuery" class="btn btn-success btn-sm" action="list" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
 	</g:form>
+	
+	<g:link controller="avisoDeuda" action="sendDebtAdvice" params="[clienteId: "${ clienteId }" ]">
+		<input type="button" class="btn btn-warning btn-sm pull-right" value="Enviar aviso de deuda"/>
+	</g:link>
+	
 	<g:if test="${resumenList.isEmpty() && clienteIdLastValue!=null}">
 		<div class="alert alert-dismissible alert-warning">
 		  	<button type="button" class="close" data-dismiss="alert">×</button>

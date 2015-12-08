@@ -1,5 +1,7 @@
 package ar.com.campochico
 
+import grails.plugin.mail.MailService;
+
 class Cliente {
 
 	String nombre
@@ -9,6 +11,8 @@ class Cliente {
 	String mail
 	int ordenDeVisita
 
+	def mailService
+	
 	static constraints = {
 		nombre blank: false, nullable: false
 		direccion blank: false, nullable: false
@@ -23,11 +27,6 @@ class Cliente {
 		return "$nombre";
 	}
 	
-	def enviarRecordatorioDeuda() {
-		//TODO: Utilizando la dirección de correo, se envía mail al 
-		//cliente recordandole que tiene una deuda.
-	}
-	
 	def intercambiarOrdenVisita(Cliente other) {
 		if (other!=null) {
 			int aux = this.getOrdenDeVisita()
@@ -36,8 +35,29 @@ class Cliente {
 		}
 	}
 	
-	def enviarAvisoNoVisita() {
-		//TODO: Utilizando la dirección de correo, se envía mail al
-		//cliente avisandole que no se le visitará en el día actual.
+	def testAction() {
+		sendMail {
+			to "myfriend@gmail.com"
+			subject "This is a test mail"
+			body "Hello, This is a test mail, how are you?"
+		}
+	}
+	
+	def enviarAvisoNoVisita(String contenidoMensaje) {
+		mailService.sendMail {
+			to mail 
+			//subject ['advice.mail.subject.noVisit']
+			subject "Asunto de prueba"
+			body contenidoMensaje
+		}
+	}
+	
+	def enviarRecordatorioDeuda(String contenidoMensaje) {
+		mailService.sendMail {
+			to mail
+			//subject ['advice.mail.subject.debt']
+			subject "Asunto de prueba"
+			body contenidoMensaje
+		 }
 	}
 }

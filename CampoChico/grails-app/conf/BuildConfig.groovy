@@ -77,6 +77,8 @@ grails.project.dependency.resolution = {
 		
 		compile ":shiro:1.2.1"
 		
+		compile ":mail:1.0.7"
+		
         runtime ":hibernate4:4.3.8.1"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
