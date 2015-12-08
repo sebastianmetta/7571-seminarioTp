@@ -6,25 +6,25 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class VentaProductoController {
+class VentaController {
 	static scaffold = true
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond VentaProducto.list(params), model:[ventaProductoInstanceCount: VentaProducto.count()]
+        respond Venta.list(params), model:[ventaProductoInstanceCount: Venta.count()]
     }
 
-    def show(VentaProducto ventaProductoInstance) {
+    def show(Venta ventaProductoInstance) {
 		respond ventaProductoInstance
     }
 
     def create() {
-        respond new VentaProducto(params)
+        respond new Venta(params)
     }
 
     @Transactional
-    def save(VentaProducto ventaProductoInstance) {
+    def save(Venta ventaProductoInstance) {
         if (ventaProductoInstance == null) {
             notFound()
             return
@@ -46,12 +46,12 @@ class VentaProductoController {
         }
     }
 
-    def edit(VentaProducto ventaProductoInstance) {
+    def edit(Venta ventaProductoInstance) {
         respond ventaProductoInstance
     }
 
     @Transactional
-    def update(VentaProducto ventaProductoInstance) {
+    def update(Venta ventaProductoInstance) {
         if (ventaProductoInstance == null) {
             notFound()
             return
@@ -74,7 +74,7 @@ class VentaProductoController {
     }
 
     @Transactional
-    def delete(VentaProducto ventaProductoInstance) {
+    def delete(Venta ventaProductoInstance) {
 
         if (ventaProductoInstance == null) {
             notFound()

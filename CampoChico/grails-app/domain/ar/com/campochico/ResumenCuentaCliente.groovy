@@ -5,7 +5,7 @@ import groovy.transform.ToString;
 import java.util.Date;
 
 @ToString
-class ResumenCuentaClienteDto {
+class ResumenCuentaCliente {
 
 	Date fecha
 	String descripcion

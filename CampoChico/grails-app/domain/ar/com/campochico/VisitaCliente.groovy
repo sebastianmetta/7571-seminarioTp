@@ -15,7 +15,7 @@ class VisitaCliente {
 	
 	static mapping = { productosVendidos cascade:"all-delete-orphan" }
 	
-	static hasMany = [productosVendidos: VentaProducto]
+	static hasMany = [productosVendidos: Venta]
 
 	static constraints = {
 		fecha blank:false, nullable:false
@@ -34,7 +34,7 @@ class VisitaCliente {
 	 * @return
 	 */
 	def getProductosVendidosByProveedor(Proveedor proveedor) {
-		List productos = VentaProducto.withCriteria {
+		List productos = Venta.withCriteria {
 			eq('proveedor', proveedor)
 		}
 		return productos

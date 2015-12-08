@@ -1,5 +1,5 @@
 
-import ar.com.campochico.CompraProducto;
+import ar.com.campochico.Compra;
 import ar.com.campochico.Role;
 import ar.com.campochico.User
 import ar.com.campochico.Cliente
@@ -7,7 +7,7 @@ import ar.com.campochico.DiaVisitaCliente;
 import ar.com.campochico.Producto
 import ar.com.campochico.Proveedor
 import ar.com.campochico.Vendedor;
-import ar.com.campochico.Zona;
+import ar.com.campochico.ZonaVenta;
 import grails.util.Environment
 
 import org.apache.commons.logging.Log
@@ -24,8 +24,8 @@ class BootStrap {
 		log.info('Inicializando datos de la aplicación...')
 
 		//Vendedores
-		def vendedor1 = new Vendedor(nombre:"Vendedor1", vehiculo:"Vehiculo1").save(flush:true)
-		def vendedor2 = new Vendedor(nombre:"Vendedor2", vehiculo:"Vehiculo2").save(flush:true)
+		def vendedor1 = new Vendedor(nombre:"Luis Alberto Spinetta", vehiculo:"Camioneta1").save(flush:true)
+		def vendedor2 = new Vendedor(nombre:"Jimi Hendrix", vehiculo:"Camioneta2").save(flush:true)
 		
 		//Roles
 		def adminRole = new Role(name: Role.ROL_ADMINISTRADOR)
@@ -121,30 +121,30 @@ class BootStrap {
 			DiaVisitaCliente dSabado = new DiaVisitaCliente(dia: sabado).save()
 			DiaVisitaCliente dDomingo = new DiaVisitaCliente(dia: domingo).save()
 
-			new Zona(nombre: 'Lunes y Jueves',
+			new ZonaVenta(nombre: 'Lunes y Jueves',
 			diasVisita: [dLunes, dJueves].asList(),
 			clientes: [c0, c1, c2].asList(),
 			vendedor: vendedor1).save();
-			new Zona(nombre: 'Martes y Viernes',
+			new ZonaVenta(nombre: 'Martes y Viernes',
 			diasVisita: [dMartes, dViernes].asList(),
 			clientes: [c3, c4, c5].asList(),
 			vendedor: vendedor1).save();
-			new Zona(nombre: 'Miércoles y Sábados',
+			new ZonaVenta(nombre: 'Miércoles y Sábados',
 			diasVisita: [dMiercoles, dSabado].asList(),
 			clientes: [c6, c7, c8, c9].asList(),
 			vendedor: vendedor2).save();
-			new Zona(nombre: 'Domingos',
+			new ZonaVenta(nombre: 'Domingos',
 			diasVisita: [dDomingo].asList(),
 			clientes: [c10, c11].asList(),
 			vendedor: vendedor2).save();
 
 
 			//Compra de productos
-			def compraCajBco1 = new CompraProducto(fechaDeCompra: new Date(),producto: cajBco1, proveedor:proveRimasa,precioUnitario: 340, cantidad: 50, total: 17000).save()
-			def compraCajBco2= new CompraProducto(fechaDeCompra: new Date(),producto: cajBco2, proveedor:proveBeroch,precioUnitario: 320, cantidad: 30, total: 9600).save()
-			def compraCajSuper= new CompraProducto(fechaDeCompra: new Date(),producto: cajSuper, proveedor:proveRimasa,precioUnitario: 400, cantidad: 15, total: 6000).save()
-			def compraCajColor= new CompraProducto(fechaDeCompra: new Date(),producto: cajColor, proveedor:proveBeroch,precioUnitario: 360, cantidad: 20, total: 7200).save()
-			def compraMaple= new CompraProducto(fechaDeCompra: new Date(),producto: maple, proveedor:proveBeroch,precioUnitario: 28, cantidad: 1, total: 28).save()
+			def compraCajBco1 = new Compra(fechaDeCompra: new Date(),producto: cajBco1, proveedor:proveRimasa,precioUnitario: 340, cantidad: 50, total: 17000).save()
+			def compraCajBco2= new Compra(fechaDeCompra: new Date(),producto: cajBco2, proveedor:proveBeroch,precioUnitario: 320, cantidad: 30, total: 9600).save()
+			def compraCajSuper= new Compra(fechaDeCompra: new Date(),producto: cajSuper, proveedor:proveRimasa,precioUnitario: 400, cantidad: 15, total: 6000).save()
+			def compraCajColor= new Compra(fechaDeCompra: new Date(),producto: cajColor, proveedor:proveBeroch,precioUnitario: 360, cantidad: 20, total: 7200).save()
+			def compraMaple= new Compra(fechaDeCompra: new Date(),producto: maple, proveedor:proveBeroch,precioUnitario: 28, cantidad: 1, total: 28).save()
 
 		}
 	}

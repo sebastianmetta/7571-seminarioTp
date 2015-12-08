@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.joda.time.LocalDate
 import org.springframework.transaction.annotation.Transactional
 
-class ZonaService {
+class ZonaVentaService {
 
 	//Export plugin
 	def exportService
@@ -22,7 +22,7 @@ class ZonaService {
 	def zoneClients(LocalDate localDate) {
 		DiaVisitaCliente dayToSearch = DiaVisitaCliente.findByDia(localDate.dayOfWeek().getAsText());
 		if (dayToSearch) {
-			List<Zona> zoneToReturn = Zona.withCriteria {
+			List<ZonaVenta> zoneToReturn = ZonaVenta.withCriteria {
 				diasVisita {
 					eq('id', dayToSearch.getId())
 				}
@@ -39,7 +39,7 @@ class ZonaService {
 	def zoneName (LocalDate localDate) {
 		DiaVisitaCliente dayToSearch = DiaVisitaCliente.findByDia(localDate.dayOfWeek().getAsText());
 		if (dayToSearch) {
-			List<Zona> zoneToReturn = Zona.withCriteria {
+			List<ZonaVenta> zoneToReturn = ZonaVenta.withCriteria {
 				diasVisita {
 					eq('id', dayToSearch.getId())
 				}
@@ -56,7 +56,7 @@ class ZonaService {
 	def vendedorName (LocalDate localDate) {
 		DiaVisitaCliente dayToSearch = DiaVisitaCliente.findByDia(localDate.dayOfWeek().getAsText());
 		if (dayToSearch) {
-			List<Zona> zoneToReturn = Zona.withCriteria {
+			List<ZonaVenta> zoneToReturn = ZonaVenta.withCriteria {
 				diasVisita {
 					eq('id', dayToSearch.getId())
 				}

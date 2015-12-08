@@ -91,7 +91,7 @@
 						in="${visitaClienteInstance.productosVendidos}" var="p">
 						<span class="col-lg-2 control-label"
 							aria-labelledby="productosVendidos-label"><g:link
-								controller="ventaProducto" action="show" id="${p.id}">
+								controller="venta" action="show" id="${p.id}">
 								${p?.encodeAsHTML()}
 							</g:link></span>
 					</g:each></li>

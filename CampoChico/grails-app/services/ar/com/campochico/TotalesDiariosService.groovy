@@ -33,7 +33,7 @@ class TotalesDiariosService {
 			for (VisitaCliente eachVisita : visitasClientes){
 				List productosVendidos = eachVisita.getProductosVendidosByProveedor(eachProveedor)
 
-				for(VentaProducto eachVenta : productosVendidos) {
+				for(Venta eachVenta : productosVendidos) {
 					TotalDiarioProducto totalDiarioProducto = getOrAddProducto(eachVenta.getProducto(),totalesDiariosProductos)
 					totalDiarioProducto.acumularVenta(eachVenta)
 					totalDiarioProducto.setCostoUnitario(getCostoProductoProveedor(totalDiarioProducto.producto, eachProveedor))
@@ -75,7 +75,7 @@ class TotalesDiariosService {
 	 * @return
 	 */
 	private Double getCostoProductoProveedor(Producto producto, Proveedor proveedor) {
-		List<CompraProducto> compraProductoList = CompraProducto.withCriteria {
+		List<Compra> compraProductoList = Compra.withCriteria {
 			eq('producto', producto)
 			eq('proveedor', proveedor)
 			order('fechaDeCompra','desc')

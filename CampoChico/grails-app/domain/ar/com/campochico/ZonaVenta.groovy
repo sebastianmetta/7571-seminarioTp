@@ -4,10 +4,10 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate
 
 /**
- * Representa una Zona de clientes 
+ * Representa una Zona de ventas a clientes 
  * @author sebastian
  */
-class Zona {
+class ZonaVenta {
 
 	String nombre
 	List diasVisita

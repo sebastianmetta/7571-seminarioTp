@@ -3,12 +3,13 @@ package ar.com.campochico
 import groovy.transform.ToString;
 
 /**
- * Representa la venta de un producto a un cliente.
+ * Modela la venta de un producto a un cliente.</br>
+ * Una venta 
+ * 
  * @author sebastian
- *
  */
 @ToString(includeNames=false,includePackage=false)
-class VentaProducto {
+class Venta {
 
 	Producto producto
 	Proveedor proveedor

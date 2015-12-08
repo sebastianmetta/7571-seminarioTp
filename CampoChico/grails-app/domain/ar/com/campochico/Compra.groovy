@@ -5,7 +5,7 @@ package ar.com.campochico
  * @author sebastian
  *
  */
-class CompraProducto {
+class Compra {
 
 	Date fechaDeCompra
 	Producto producto

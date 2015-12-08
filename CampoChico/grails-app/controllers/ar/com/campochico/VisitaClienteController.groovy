@@ -43,7 +43,7 @@ class VisitaClienteController {
 		int ventaProductoCount = 0
 		def ventaProductoAsString = params.get('ventaProductosList[' + ventaProductoCount + ']')
 		while(ventaProductoAsString!=null) {
-			VentaProducto ventaProducto = new VentaProducto(params.get('ventaProductosList[' + ventaProductoCount + ']'))
+			Venta ventaProducto = new Venta(params.get('ventaProductosList[' + ventaProductoCount + ']'))
 			visitaClienteInstance.addToProductosVendidos(ventaProducto)
 			ventaProductoCount++
 			ventaProductoAsString = params.get('ventaProductosList[' + ventaProductoCount + ']')
@@ -84,7 +84,7 @@ class VisitaClienteController {
 		int ventaProductoCount = 0
 		def ventaProductoParams = params.get('ventaProductosList[' + ventaProductoCount + ']')
 		while(ventaProductoParams!=null) {
-			def ventaProducto = VentaProducto.get(ventaProductoParams['id'])
+			def ventaProducto = Venta.get(ventaProductoParams['id'])
 			if (ventaProductoParams['deleted'].equals("true")) {				
 				//Baja
 				visitaClienteInstance.productosVendidos.remove(ventaProducto)
@@ -96,7 +96,7 @@ class VisitaClienteController {
 				}
 				else {
 					//Alta
-					ventaProducto = new VentaProducto(params.get('ventaProductosList[' + ventaProductoCount + ']'))
+					ventaProducto = new Venta(params.get('ventaProductosList[' + ventaProductoCount + ']'))
 					visitaClienteInstance.addToProductosVendidos(ventaProducto)
 				}
 			}

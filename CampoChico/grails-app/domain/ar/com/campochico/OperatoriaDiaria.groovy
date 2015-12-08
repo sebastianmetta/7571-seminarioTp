@@ -20,9 +20,22 @@ class OperatoriaDiaria {
 
 	static constraints = {
 		fecha blank:false, nullable:false
-		vendedor blank:false, nullable:false
-		dineroOtorgado blank:false, nullable:false
-		maplesPerdida blank:false, nullable:false
+		//Restricción: No puede haber más de 1 operatoria diara por (fecha, vendedor) 
+		vendedor blank:false, nullable:false, validator: { 
+			//1er parametro: campo vendedor, 2do: instancia de op diaria, 3ro: Obj error
+			val, obj, errors  ->
+				def opDiaria = OperatoriaDiaria.withCriteria {
+					eq('fecha', obj.fecha)
+					eq('vendedor', val)
+				  }
+				if (opDiaria==null || opDiaria.isEmpty()) {
+					return true
+				} else {
+					errors.reject(['operatoriaDiara.unique.fechaAndVendedor']) 
+				}
+			}
+		dineroOtorgado blank:false
+		maplesPerdida blank:false
 		observaciones nullable:true
 	}
 	
@@ -31,13 +44,11 @@ class OperatoriaDiaria {
 		this.vendedor = null
 		this.dineroOtorgado=0
 		this.maplesPerdida=0
-		//TODO: Ver como obtener mensajes i18n
-		//this.observaciones=message(code: "operatoriaDiaria.not.foundByDate")
-		this.observaciones="No se ha creado la operatoria diaria de hoy"
+		this.observaciones=['operatoriaDiara.not.foundByDate']
 	}
 	
-	def registrarPerdida(){
-		//TODO: Se registra la perdida de productos.
+	def registrarPerdida(int maplesPerdida){
+		this.maplesPerdida+=maplesPerdida
 	}
 
 }

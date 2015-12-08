@@ -33,7 +33,7 @@ class TotalDiarioProducto {
 		return "Producto:" + producto + ", CantTotal:" + cantidadTotal+ ", TotVenta:" + totalVenta + ", CostoUnitario:" + costoUnitario + ", Gcia:" + ganancia
 	}
 	
-	def acumularVenta(VentaProducto ventaProducto) {
+	def acumularVenta(Venta ventaProducto) {
 		if (ventaProducto.producto.equals(this.producto)) {
 			this.cantidadTotal+=ventaProducto.cantidad
 			this.totalVenta+=(ventaProducto.cantidad * ventaProducto.precioVentaUnitario)

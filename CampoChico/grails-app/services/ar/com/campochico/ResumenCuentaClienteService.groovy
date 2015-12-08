@@ -18,7 +18,7 @@ class ResumenCuentaClienteService {
 
 	def getResumenCuenta(Cliente cliente, Date fechaDesde, Date fechaHasta) {
 		
-		List<ResumenCuentaClienteDto> resumen = new ArrayList<ResumenCuentaClienteDto>()
+		List<ResumenCuentaCliente> resumen = new ArrayList<ResumenCuentaCliente>()
 		
 		if (!cliente) {
 			return resumen
@@ -34,8 +34,8 @@ class ResumenCuentaClienteService {
 		for (VisitaCliente eachVisita : visitasCliente) {
 			//Iteramos las ventas de cada fecha del cliente para el saldo deudor
 			//BigDecimal subtotalDeudor = BigDecimal.ZERO
-			for (VentaProducto eachVentaProducto : eachVisita.getProductosVendidos()) {
-				ResumenCuentaClienteDto resumenDto = new ResumenCuentaClienteDto();
+			for (Venta eachVentaProducto : eachVisita.getProductosVendidos()) {
+				ResumenCuentaCliente resumenDto = new ResumenCuentaCliente();
 				resumenDto.setFecha(eachVisita.getFecha().clearTime());
 				resumenDto.setDescripcion(
 						eachVentaProducto.getProducto().getNombre() + " - " +
@@ -50,7 +50,7 @@ class ResumenCuentaClienteService {
 				resumen.add(resumenDto);
 			}
 			//Saldo acreedor se llena con importe cobrado
-			ResumenCuentaClienteDto resumenDto = new ResumenCuentaClienteDto();
+			ResumenCuentaCliente resumenDto = new ResumenCuentaCliente();
 			resumenDto.setFecha(eachVisita.getFecha());
 			resumenDto.setDescripcion("Importe cobrado")
 			resumenDto.setSaldoDeudor(BigDecimal.ZERO)

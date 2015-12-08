@@ -10,7 +10,7 @@ class HojaDeRutaController {
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	// Grails inyecta los servicios por convencion de nombres.
-	def zonaService
+	def zonaVentaService
 
 	def visitaClienteService
 
@@ -28,15 +28,15 @@ class HojaDeRutaController {
 			localDate= new LocalDate()
 		}
 		if (params?.exportFormat && params?.exportFormat != "html") {
-			zonaService.exportClientsListByDateToOutputStream(response, localDate, params.exportFormat, params.exportExtension)
+			zonaVentaService.exportClientsListByDateToOutputStream(response, localDate, params.exportFormat, params.exportExtension)
 		}
 		else {
 			[	
-				zoneName:zonaService.zoneName(localDate),
-				clientsList: zonaService.zoneClients(localDate),
+				zoneName:zonaVentaService.zoneName(localDate),
+				clientsList: zonaVentaService.zoneClients(localDate),
 				clientsVisitsList: visitaClienteService.getClientVisitsByDate(localDate.toDate()),
 				zoneDate: localDate.toDate(),
-				vendedorName: zonaService.vendedorName(localDate)
+				vendedorName: zonaVentaService.vendedorName(localDate)
 			]
 		}
 

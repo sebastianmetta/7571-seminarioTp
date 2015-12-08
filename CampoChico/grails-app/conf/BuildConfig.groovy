@@ -81,5 +81,7 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 		
+		runtime ":uml-class-diagram:0.4.4"
+		
     }
 }

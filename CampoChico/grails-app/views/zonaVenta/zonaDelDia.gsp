@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<title>Campo Chico - Hoja de ruta</title>
+<title>Campo Chico - Zona de venta</title>
 </head>
 <body>
 	<div>
-		<h2>Hoja de ruta para la zona: ${zoneName}</h2>
-		<p class="text-primary">Vendedor: ${vendedorName}</p>
+		<h2>Zona: ${zoneName}</h2>
+		<p class="text-primary">Vendedor: <b>${vendedorName}</b></p>
 		<div style="display: inline-block; text-align: right; width: 100%">
 			<div class="btn-group">
 		      <a aria-expanded="false" href="#" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -18,8 +18,8 @@
 		      <ul class="dropdown-menu">
 		      	<g:set var="paramsForExcel" value="[exportFormat: 'excel', exportExtension: 'xls']" />
 		      	<g:set var="paramsForPDF" value="[exportFormat: 'pdf', exportExtension: 'pdf']" />
-		        <li><a href="${createLink(controller:'HojaDeRuta', action:'list', params:paramsForExcel)}">Excel</a></li>
-		        <li><a href="${createLink(controller:'HojaDeRuta', action:'list', params:paramsForPDF)}">PDF</a></li>
+		        <li><a href="${createLink(controller:'ZonaVenta', action:'list', params:paramsForExcel)}">Excel</a></li>
+		        <li><a href="${createLink(controller:'ZonaVenta', action:'list', params:paramsForPDF)}">PDF</a></li>
 		       </ul>
 	       </div>
 	    </div>
