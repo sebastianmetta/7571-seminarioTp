@@ -13,7 +13,7 @@ class ZonaVentaService {
 
 	//Export plugin
 	def exportService
-	def grailsApplication  //inject GrailsApplication
+	def grailsApplication  
 
 	/**
 	 * @return lista de Clientes correspondientes a la zona del día actual ordenada por orden de visita
@@ -98,7 +98,7 @@ class ZonaVentaService {
 		}
 		Map formatters = [nombre: upperCase]
 		//Map parameters = [title: "Clientes correspondientes a ${localDate}" , "column.widths": [0.3, 0.5, 0.2, 0.2, 0.1]]
-		Map parameters = [title: "Hoja De  Ruta ${localDate}"]
+		Map parameters = [title: "Zona de venta ${localDate}"]
 
 		exportService.export(exportFormat, servletResponse.outputStream, this.zoneClients(localDate), fields, labels, formatters, parameters)
 		[ clientsInstanceList: this.zoneClients(localDate) ]

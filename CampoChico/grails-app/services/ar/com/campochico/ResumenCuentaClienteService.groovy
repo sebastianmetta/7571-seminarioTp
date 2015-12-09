@@ -12,29 +12,29 @@ import grails.transaction.Transactional
 @Transactional
 class ResumenCuentaClienteService {
 
-	//Export plugin
 	def exportService
-	def grailsApplication  //inject GrailsApplication
+	def grailsApplication 
 
 	def getResumenCuenta(Cliente cliente, Date fechaDesde, Date fechaHasta) {
-		
-		List<ResumenCuentaCliente> resumen = new ArrayList<ResumenCuentaCliente>()
-		
 		if (!cliente) {
-			return resumen
+			return new ArrayList<ResumenCuentaCliente>()
 		}
-		
 		List visitasCliente = VisitaCliente.withCriteria {
 			eq('cliente',cliente)
 			between('fecha', fechaDesde.clearTime(), fechaHasta.clearTime())
 			order('fecha', 'asc')
 		}
+		return calculateResumen(visitasCliente)
+	}
+
+	private def calculateResumen(List visitasCliente) {
 		//TODO: Obtener saldo desde el inicio hasta fecha desde y ponerlo como primer registro.
+		List<ResumenCuentaCliente> resumen = new ArrayList<ResumenCuentaCliente>()
+		
 		BigDecimal saldoAnterior = BigDecimal.ZERO
-		for (VisitaCliente eachVisita : visitasCliente) {
+		visitasCliente.each { eachVisita ->
 			//Iteramos las ventas de cada fecha del cliente para el saldo deudor
-			//BigDecimal subtotalDeudor = BigDecimal.ZERO
-			for (Venta eachVentaProducto : eachVisita.getProductosVendidos()) {
+			eachVisita.getProductosVendidos().each { eachVentaProducto ->
 				ResumenCuentaCliente resumenDto = new ResumenCuentaCliente();
 				resumenDto.setFecha(eachVisita.getFecha().clearTime());
 				resumenDto.setDescripcion(
@@ -46,25 +46,26 @@ class ResumenCuentaClienteService {
 				resumenDto.setSaldoAcreedor(BigDecimal.ZERO)
 				saldoAnterior = saldoAnterior.add(resumenDto.getSaldoAcreedor().subtract(resumenDto.getSaldoDeudor()))
 				resumenDto.setSaldo(saldoAnterior)
-				//subtotalDeudor.add(resumenDto.getSaldoDeudor())
 				resumen.add(resumenDto);
 			}
 			//Saldo acreedor se llena con importe cobrado
-			ResumenCuentaCliente resumenDto = new ResumenCuentaCliente();
-			resumenDto.setFecha(eachVisita.getFecha());
-			resumenDto.setDescripcion("Importe cobrado")
-			resumenDto.setSaldoDeudor(BigDecimal.ZERO)
-			resumenDto.setSaldoAcreedor(new BigDecimal(eachVisita.getImporteCobrado()))
-			saldoAnterior = saldoAnterior.add(resumenDto.getSaldoAcreedor().subtract(resumenDto.getSaldoDeudor()))
-			resumenDto.setSaldo(saldoAnterior)
-			resumen.add(resumenDto);
+			ResumenCuentaCliente resumenInstance = createResumenInstance(eachVisita)
+			saldoAnterior = saldoAnterior.add(resumenInstance.getSaldoAcreedor().subtract(resumenInstance.getSaldoDeudor()))
+			resumenInstance.setSaldo(saldoAnterior)
+			resumen.add(resumenInstance);
 		}
-//		for (ResumenCuentaClienteDto eachDto : resumen) {
-//			println eachDto.toString()
-//		}
 		return resumen
 	}
-
+	
+	private def createResumenInstance(VisitaCliente visitaCliente) {
+		ResumenCuentaCliente resumenInstance = new ResumenCuentaCliente();
+		resumenInstance.setFecha(visitaCliente.getFecha());
+		resumenInstance.setDescripcion("Importe cobrado")
+		resumenInstance.setSaldoDeudor(BigDecimal.ZERO)
+		resumenInstance.setSaldoAcreedor(new BigDecimal(visitaCliente.getImporteCobrado()))
+		return resumenInstance
+	}
+	
 	def exportResumenCuentaClienteToOutputStream(HttpServletResponse servletResponse, Cliente cliente, LocalDate fechaDesde, LocalDate fechaHasta, String exportFormat, String exportExtension) {
 		servletResponse.contentType = grailsApplication.config.grails.mime.types[exportFormat]
 		servletResponse.setHeader("Content-disposition", "attachment; filename=ResumenCuentaCliente.${exportExtension}")
@@ -75,18 +76,14 @@ class ResumenCuentaClienteService {
 		BigDecimal haber
 		BigDecimal saldo
 
-		List fields = [
-			"fecha",
-			"descripcion",
-			"debe",
-			"haber",
-			"saldo"
-		]
+		List fields = [ "fecha", "descripcion", "debe", "haber", "saldo" ]
 		Map labels = ["fecha":"Fecha", "descripcion":"Descripción", "debe":"Debe", "haber":"Haber", "saldo":"Saldo"]
-		// Formatter closure
+
+				// Formatter closure
 		def upperCase = { domain, value ->
 			return value.toUpperCase()
 		}
+		
 		Map formatters = []
 		Map parameters = [title: "Resumen cuenta cliente ${cliente} - ${localDate}"]
 		

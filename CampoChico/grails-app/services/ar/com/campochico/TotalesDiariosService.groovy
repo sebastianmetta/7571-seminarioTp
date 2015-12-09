@@ -28,18 +28,14 @@ class TotalesDiariosService {
 			List<TotalDiarioProducto> totalesDiariosProductos = new ArrayList<TotalDiarioProducto>()
 
 			List<VisitaCliente> visitasClientes = visitaClienteService.getClientVisitsByDate(fecha)
-
-			
-			for (VisitaCliente eachVisita : visitasClientes){
+			visitasClientes.each { eachVisita ->
 				List productosVendidos = eachVisita.getProductosVendidosByProveedor(eachProveedor)
-
-				for(Venta eachVenta : productosVendidos) {
+				productosVendidos.each { eachVenta ->
 					TotalDiarioProducto totalDiarioProducto = getOrAddProducto(eachVenta.getProducto(),totalesDiariosProductos)
 					totalDiarioProducto.acumularVenta(eachVenta)
 					totalDiarioProducto.setCostoUnitario(getCostoProductoProveedor(totalDiarioProducto.producto, eachProveedor))
 					totalDiarioProducto.calcularGanancia()
 				}
-
 			}
 
 			if (totalesDiariosProductos.size()>0) {
@@ -56,9 +52,9 @@ class TotalesDiariosService {
 	 * @return una instancia de TotalDiarioProducto correspondiente al producto
 	 */
 	private TotalDiarioProducto getOrAddProducto(Producto producto, List<TotalDiarioProducto> totalesDiariosProductos) {
-		for (TotalDiarioProducto each : totalesDiariosProductos) {
-			if (producto.equals(each.getProducto())) {
-				return each
+		totalesDiariosProductos.each { eachTotal ->
+			if (producto.equals(eachTotal.getProducto())) {
+				return eachTotal
 			}
 		}
 		TotalDiarioProducto toReturn = new TotalDiarioProducto();

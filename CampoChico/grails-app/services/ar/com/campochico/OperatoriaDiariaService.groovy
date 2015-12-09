@@ -15,7 +15,6 @@ class OperatoriaDiariaService {
 		}
 		
 		if (toReturn==null) {
-			//TODO: Averiguar como hacer un metodo estatico o cómo conviene reemplazarlo.
 			toReturn = new OperatoriaDiaria()
 			toReturn.setEmtpyValues()
 		}
@@ -30,7 +29,7 @@ class OperatoriaDiariaService {
 		def toReturn = new ArrayList<Vendedor>()
 		def now = new Date()
 		now.clearTime()
-		for (Vendedor eachVendedor : Vendedor.list()) {
+		Vendedor.list().each { eachVendedor ->
 			def operatoriaVendedor = OperatoriaDiaria.withCriteria { 
 				between('fecha', now, now+1)
 				eq('vendedor', eachVendedor)

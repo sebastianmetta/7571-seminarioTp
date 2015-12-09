@@ -23,11 +23,11 @@ class ZonaVenta {
 
 	@Override
 	public String toString() {
-		return "Zona [nombre=" + nombre + "]";
+		return nombre;
 	}
 	
 	def enviarAvisoNoVisitaClientes(String contenidoMensaje){
-		for (Cliente eachCliente: clientes) {
+		clientes.each { eachCliente ->
 			eachCliente.enviarAvisoNoVisita(contenidoMensaje)
 		}
 	}

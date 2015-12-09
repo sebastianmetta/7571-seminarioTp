@@ -22,7 +22,7 @@ class Vendedor {
 		return nombre;
 	}
 	
-	def visitarCliente() {
-		//TODO: generar VisitaCliente
+	def calcularEstadisticasVenta(Date fechaDesde, Date fechaHasta) {
+		//TODO: ver si corresponde aca o en servicio.
 	}
 }
