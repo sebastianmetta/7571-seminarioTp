@@ -33,7 +33,7 @@ class TotalesDiariosService {
 				productosVendidos.each { eachVenta ->
 					TotalDiarioProducto totalDiarioProducto = getOrAddProducto(eachVenta.getProducto(),totalesDiariosProductos)
 					totalDiarioProducto.acumularVenta(eachVenta)
-					totalDiarioProducto.setCostoUnitario(getCostoProductoProveedor(totalDiarioProducto.producto, eachProveedor))
+					totalDiarioProducto.setCostoUnitario(Compra.getCostoProductoProveedor(totalDiarioProducto.producto, eachProveedor))
 					totalDiarioProducto.calcularGanancia()
 				}
 			}
@@ -64,23 +64,5 @@ class TotalesDiariosService {
 		return toReturn
 	}
 	
-	/**
-	 * Devuelve el costo del producto asociado al proveedor
-	 * @param producto
-	 * @param proveedor
-	 * @return
-	 */
-	private Double getCostoProductoProveedor(Producto producto, Proveedor proveedor) {
-		List<Compra> compraProductoList = Compra.withCriteria {
-			eq('producto', producto)
-			eq('proveedor', proveedor)
-			order('fechaDeCompra','desc')
-		}
-		if (compraProductoList!=null && !compraProductoList.isEmpty()) {			
-			return compraProductoList.first().precioUnitario
-		} else {
-			return 0
-		}
-	}
 }
 

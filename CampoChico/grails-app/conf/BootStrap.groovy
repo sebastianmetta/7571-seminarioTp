@@ -100,9 +100,9 @@ class BootStrap {
 			Cliente c10 = new Cliente(ordenDeVisita: 1, nombre: 'Cliente 10',direccion: 'Dirección cliente 10',contacto: 'Contacto cliente 10',telefono: '15-6987-4510', mail:'cliente10@mail.com').save()
 			Cliente c11 = new Cliente(ordenDeVisita: 2, nombre: 'Cliente 11',direccion: 'Dirección cliente 11',contacto: 'Contacto cliente 11').save()
 
-			def proveRimasa = new Proveedor(nombre: 'Rimasa', direccion: 'Dirección Rimasa', contacto: 'Contacto Rimasa').save()
-			def proveBeroch = new Proveedor(nombre: 'Beroch', direccion: 'Dirección Beroch', contacto: 'Contacto Beroch').save()
-			def proveOtros = new Proveedor(nombre: 'Otros', direccion: 'No corresponde', contacto: 'No corresponde').save()
+			def proveRimasa = new Proveedor(nombre: 'Rimasa', direccion: 'Dirección Rimasa', contacto: 'Contacto Rimasa', email: 'rimasa@mail.com').save()
+			def proveBeroch = new Proveedor(nombre: 'Beroch', direccion: 'Dirección Beroch', contacto: 'Contacto Beroch', email: 'beroch@mail.com').save()
+			def proveOtros = new Proveedor(nombre: 'Otros', direccion: 'No corresponde', contacto: 'No corresponde', email: 'No corresponde').save()
 
 			def cajBco1 = new Producto(nombre: 'CAJ BCO 1', descripcion: 'Cajón huevo blanco nro 1').save()
 			def cajBco2 = new Producto(nombre: 'CAJ BCO 2', descripcion: 'Cajón huevo blanco nro 2').save()

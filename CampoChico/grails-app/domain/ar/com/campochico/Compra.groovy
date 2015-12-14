@@ -22,4 +22,23 @@ class Compra {
 		cantidad blank:false, nullable:false
 		total blank:false, nullable:false
 	}
+	
+	/**
+	 * Devuelve el costo del producto asociado al proveedor
+	 * @param producto
+	 * @param proveedor
+	 * @return
+	 */
+	public static Double getCostoProductoProveedor(Producto producto, Proveedor proveedor) {
+		List<Compra> compraProductoList = Compra.withCriteria {
+			eq('producto', producto)
+			eq('proveedor', proveedor)
+			order('fechaDeCompra','desc')
+		}
+		if (compraProductoList!=null && !compraProductoList.isEmpty()) {
+			return compraProductoList.first().precioUnitario
+		} else {
+			return 0
+		}
+	}
 }

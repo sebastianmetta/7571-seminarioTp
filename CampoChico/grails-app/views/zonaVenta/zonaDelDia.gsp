@@ -26,7 +26,7 @@
 	</div>
 	<g:form action="list" method="get" >
 		<g:datePicker name="fechaZona" value="${zoneDate}" precision="day"/>
-		<g:actionSubmit name="listZone" class="btn btn-success btn-sm" action="list" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
+		<g:actionSubmit name="listZone" class="btn btn-success btn-sm" action="zonaDelDia" value="${message(code: 'default.button.find.label', default: 'Buscar')}" />
 	</g:form>
 	<table class="table table-striped table-hover ">
 		<thead>

@@ -2,6 +2,15 @@ package ar.com.campochico
 
 import grails.plugin.mail.MailService;
 
+
+/**
+ * Modela un Cliente.
+ * TODO: A futuro, modelar dirección como Value Object (Inmutable). 
+		Con esto podremos facilitar la geolocalización de los clientes.
+		Se deberan implementar metodos en esta clase como moverA(nuevaDireccion) 
+ * @author sebastian
+ *
+ */
 class Cliente {
 
 	String nombre
@@ -32,14 +41,6 @@ class Cliente {
 			int aux = this.getOrdenDeVisita()
 			this.setOrdenDeVisita(other.getOrdenDeVisita())
 			other.setOrdenDeVisita(aux)
-		}
-	}
-	
-	def testAction() {
-		sendMail {
-			to "myfriend@gmail.com"
-			subject "This is a test mail"
-			body "Hello, This is a test mail, how are you?"
 		}
 	}
 	

@@ -28,42 +28,25 @@ class ResumenCuentaClienteService {
 	}
 
 	private def calculateResumen(List visitasCliente) {
-		//TODO: Obtener saldo desde el inicio hasta fecha desde y ponerlo como primer registro.
+		//TODO: Obtener saldo desde el inicio hasta fecha desde y ponerlo 
+		//como primer registro, bajo concepto "Saldo anterior"
 		List<ResumenCuentaCliente> resumen = new ArrayList<ResumenCuentaCliente>()
 		
 		BigDecimal saldoAnterior = BigDecimal.ZERO
 		visitasCliente.each { eachVisita ->
-			//Iteramos las ventas de cada fecha del cliente para el saldo deudor
-			eachVisita.getProductosVendidos().each { eachVentaProducto ->
-				ResumenCuentaCliente resumenDto = new ResumenCuentaCliente();
-				resumenDto.setFecha(eachVisita.getFecha().clearTime());
-				resumenDto.setDescripcion(
-						eachVentaProducto.getProducto().getNombre() + " - " +
-						NumberUtils.formatQuantity(eachVentaProducto.getCantidad()) + " x " +
-						NumberUtils.formatCurrency(eachVentaProducto.getPrecioVentaUnitario())
-						)
-				resumenDto.setSaldoDeudor(new BigDecimal(eachVentaProducto.getCantidad() * eachVentaProducto.getPrecioVentaUnitario()))
-				resumenDto.setSaldoAcreedor(BigDecimal.ZERO)
-				saldoAnterior = saldoAnterior.add(resumenDto.getSaldoAcreedor().subtract(resumenDto.getSaldoDeudor()))
-				resumenDto.setSaldo(saldoAnterior)
-				resumen.add(resumenDto);
+			//Saldo deudor
+			eachVisita.getProductosVendidos().each { eachVenta ->
+				ResumenCuentaCliente resumenDeCuenta = ResumenCuentaCliente.crearParaSaldoDeudor(eachVisita, eachVenta, saldoAnterior)
+				saldoAnterior = resumenDeCuenta.getSaldo()
+				resumen.add(resumenDeCuenta);
 			}
-			//Saldo acreedor se llena con importe cobrado
-			ResumenCuentaCliente resumenInstance = createResumenInstance(eachVisita)
+			//Saldo acreedor
+			ResumenCuentaCliente resumenInstance = ResumenCuentaCliente.crearParaSaldoAcreedor(eachVisita)
 			saldoAnterior = saldoAnterior.add(resumenInstance.getSaldoAcreedor().subtract(resumenInstance.getSaldoDeudor()))
 			resumenInstance.setSaldo(saldoAnterior)
 			resumen.add(resumenInstance);
 		}
 		return resumen
-	}
-	
-	private def createResumenInstance(VisitaCliente visitaCliente) {
-		ResumenCuentaCliente resumenInstance = new ResumenCuentaCliente();
-		resumenInstance.setFecha(visitaCliente.getFecha());
-		resumenInstance.setDescripcion("Importe cobrado")
-		resumenInstance.setSaldoDeudor(BigDecimal.ZERO)
-		resumenInstance.setSaldoAcreedor(new BigDecimal(visitaCliente.getImporteCobrado()))
-		return resumenInstance
 	}
 	
 	def exportResumenCuentaClienteToOutputStream(HttpServletResponse servletResponse, Cliente cliente, LocalDate fechaDesde, LocalDate fechaHasta, String exportFormat, String exportExtension) {
@@ -79,7 +62,7 @@ class ResumenCuentaClienteService {
 		List fields = [ "fecha", "descripcion", "debe", "haber", "saldo" ]
 		Map labels = ["fecha":"Fecha", "descripcion":"Descripción", "debe":"Debe", "haber":"Haber", "saldo":"Saldo"]
 
-				// Formatter closure
+		// Closure de formateo
 		def upperCase = { domain, value ->
 			return value.toUpperCase()
 		}

@@ -1,5 +1,9 @@
 package ar.com.campochico
 
+/**
+ * Representa el otorgamiento de un producto a un vendedor para su venta.
+ * 
+ */
 class ProductoOtorgado {
 	
 	Producto producto

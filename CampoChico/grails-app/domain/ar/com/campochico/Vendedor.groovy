@@ -3,9 +3,7 @@ package ar.com.campochico
 import groovy.transform.AutoClone;
 
 /**
- * Un Vendedor es una persona responsable de un reparto.
- * @author sebastian
- *
+ * Modela un Vendedor, que es una persona responsable de un reparto.
  */
 @AutoClone
 class Vendedor {
@@ -23,6 +21,7 @@ class Vendedor {
 	}
 	
 	def calcularEstadisticasVenta(Date fechaDesde, Date fechaHasta) {
-		//TODO: ver si corresponde aca o en servicio.
+		//TODO: A futuro se necesita calcular para un vendedor sus estadisticas de venta
+		//ver si corresponde aca o en servicio.
 	}
 }
