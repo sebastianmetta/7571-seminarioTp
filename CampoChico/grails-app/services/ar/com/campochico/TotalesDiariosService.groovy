@@ -24,7 +24,8 @@ class TotalesDiariosService {
 	def obtenerTotalesVentas(Date fecha) {
 		Map<Proveedor, List<TotalDiarioProducto>> totalesVentas = new HashMap<Proveedor, List<TotalDiarioProducto>>()
 
-		for (Proveedor eachProveedor : Proveedor.list()) {
+		//for (Proveedor eachProveedor : Proveedor.list()) {
+		Proveedor.list().each { eachProveedor ->
 			List<TotalDiarioProducto> totalesDiariosProductos = new ArrayList<TotalDiarioProducto>()
 
 			List<VisitaCliente> visitasClientes = visitaClienteService.getClientVisitsByDate(fecha)
